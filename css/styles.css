@@ -1,0 +1,117 @@
+/* RESET */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+html,
+body {
+    height: 100%;
+}
+
+
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+
+:root {
+    --general-font: 'General Sans', sans-serif;
+    --switzer-font: 'Switzer', sans-serif;
+
+    --font-64px: 4rem;
+    --font-40px: 2.5rem;
+    --font-32px: 2rem;
+    --font-24px: 1.5rem;
+    --font-20px: 1.25rem;
+    --font-16px: 1rem;
+    --font-14px: 0.875rem;
+
+    --font-weight-black: 900;
+    --font-weight-bold: 700;
+    --font-weight-medium: 500;
+    --font-weight-regular: 400;
+
+    --color-primary-600: hsl(234, 87%, 68%);
+    --color-primary-500: hsl(234, 87%, 68%);
+    --color-primary-400: hsl(234, 87%, 68%);
+    --color-primary-300: hsl(234, 87%, 68%);
+
+    --color-gray-1000: hsl(211, 73%, 14%);
+    --color-gray-900: hsl(217, 18%, 23%);
+    --color-gray-800: hsl(218, 23%, 31%);
+    --color-gray-100: hsl(0, 0%, 100%);
+
+    --color-subtitle: hsl(227, 38%, 53%);
+    --color-subtitle-chips: hsl(227, 45%, 42%);
+    --color-subtitle-line: hsl(227, 66%, 79%);
+
+    --color-input: hsl(228, 18%, 52%);
+    --color-input-line: hsl(228, 30%, 62%);
+
+    --color-background-100: hsl(218, 73%, 97%);
+    --color-background-600: hsl(225, 94%, 93%);
+
+    --color-error: hsl(0, 56%, 56%);
+    --color-success: hsl(90, 47%, 64%);
+
+    --gradient-linear: linear-gradient(180deg, hsl(217, 84%, 95%) 0%, hsla(217, 84%, 95%, 0.3) 100%);
+}
+
+
+
+/* ESTILOS GENERALES */
+body {
+    font-family: var(--general-font);
+    font-size: 4rem;
+}
+
+/*Tipografía*/
+
+
+/*Colores*/
+
+
+/*Espaciado*/
+
+
+
+/* INDEX (Home) */
+/* NAVBAR */
