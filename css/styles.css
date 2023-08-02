@@ -13,7 +13,7 @@
 
 html,
 body {
-    height: 100%;
+    min-height: 100%;
 }
 
 
@@ -40,6 +40,11 @@ select {
     font: inherit;
 }
 
+ul,
+ol {
+    list-style-type: none;
+}
+
 
 p,
 h1,
@@ -49,6 +54,10 @@ h4,
 h5,
 h6 {
     overflow-wrap: break-word;
+}
+
+a {
+    text-decoration: none;
 }
 
 
@@ -61,18 +70,23 @@ h6 {
     --font-32px: 2rem;
     --font-24px: 1.5rem;
     --font-20px: 1.25rem;
+    --font-18px: 1.125rem;
     --font-16px: 1rem;
     --font-14px: 0.875rem;
 
-    --font-weight-black: 900;
-    --font-weight-bold: 700;
-    --font-weight-medium: 500;
-    --font-weight-regular: 400;
+    --general-regular: 400;
+    --general-medium: 500;
+    --general-semibold: 600;
 
-    --color-primary-600: hsl(234, 87%, 68%);
-    --color-primary-500: hsl(234, 87%, 68%);
-    --color-primary-400: hsl(234, 87%, 68%);
-    --color-primary-300: hsl(234, 87%, 68%);
+    --switzer-regular: 400;
+    --switzer-medium: 500;
+    --switzer-semibold: 600;
+    --switzer-bold: 700;
+
+    --color-primary-600: hsl(231.92deg 80.75% 53.14%);
+    --color-primary-500: hsl(231.92deg 100% 62.16%);
+    --color-primary-400: hsl(230.26deg 100% 69.8%);
+    --color-primary-300: hsl(226.55deg 100% 77.25%);
 
     --color-gray-1000: hsl(211, 73%, 14%);
     --color-gray-900: hsl(217, 18%, 23%);
@@ -99,19 +113,273 @@ h6 {
 
 /* ESTILOS GENERALES */
 body {
+    background: linear-gradient(180deg, hsl(223, 100%, 99%) 0%, hsl(218deg 62.9% 94.03%) 100%);
     font-family: var(--general-font);
-    font-size: 4rem;
 }
 
 /*Tipografía*/
+.h1 {
+    font-family: var(--switzer-font);
+    font-weight: var(--switzer-semibold);
+    font-size: var(--font-40px);
+    color: var(--color-gray-1000);
+    line-height: 115%;
+    letter-spacing: -0.075rem;
+}
+
+.subtitle {
+    font-family: var(--switzer-font);
+    font-weight: var(--switzer-medium);
+    font-size: var(--font-16px);
+    color: var(--color-subtitle);
+    line-height: 135.5%;
+    letter-spacing: 0.01rem;
+
+    position: relative;
+}
+
+.subtitle-left-line {
+    margin-left: 60px;
+}
+
+.subtitle-left-line::before {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 1px;
+    background: var(--color-subtitle-line);
+    left: -60px;
+    top: 50%;
+    position: absolute;
+}
+
+
+
+.paragraph {
+    font-size: var(--font-18px);
+    font-weight: var(--general-regular);
+    color: var(--color-gray-800);
+    line-height: 145%;
+}
+
+.bold {
+    font-weight: var(--general-medium);
+}
 
 
 /*Colores*/
+.primary-color-text {
+    color: var(--color-primary-500);
+}
+
 
 
 /*Espaciado*/
+.container {
+    width: 90%;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+@media only screen and (min-width: 992px) {
+    .container {
+        width: 100%;
+    }
+}
+
+.mb-12 {
+    margin-bottom: 12px;
+}
+
+
+.mb-16 {
+    margin-bottom: 16px;
+}
+
+.mb-64 {
+    margin-bottom: 64px;
+}
+
+
+/*Decoración*/
+
 
 
 
 /* INDEX (Home) */
 /* NAVBAR */
+
+/* HERO SECTION */
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+
+    padding: 150px 0;
+}
+
+.hero-section-subtitle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    font-size: var(--font-16px);
+
+    margin-bottom: 16px;
+}
+
+.hero-section-subtitle>span {
+    font-weight: var(--general-medium);
+    color: var(--color-primary-600);
+
+    padding: 0.125rem 0.625rem;
+    background-color: var(--color-background-600);
+    border-radius: 0.375rem;
+}
+
+.hero-section-subtitle>p {
+    font-family: var(--switzer-font);
+    font-weight: var(--switzer-medium);
+    color: var(--color-gray-900)
+}
+
+.hero-section-title {
+    font-family: var(--switzer-font);
+    font-weight: var(--switzer-semibold);
+    font-size: clamp(2.9rem, 1vw + 2.5rem, 3.5rem);
+
+    line-height: 98.214%;
+    letter-spacing: -0.0938rem;
+
+    margin-bottom: 24px;
+}
+
+.hero-section-description {
+    font-size: 1.25rem;
+    line-height: 135.5%;
+
+    margin-bottom: 32px;
+}
+
+
+.main-cta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: var(--color-primary-500);
+    border-radius: 0.875rem;
+    box-shadow: 0px 4px 40px 1px hsla(232, 44%, 45%, 0.3);
+
+    font-weight: var(--general-medium);
+    font-size: var(--font-20px);
+    color: var(--color-gray-100);
+
+    padding: 10px 10px 10px 37px;
+}
+
+.hero-section-cta {
+    max-width: 16.9375rem;
+
+    margin-bottom: 32px;
+}
+
+
+
+.hero-section-data {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.hero-section-data dt {
+    font-size: var(--font-32px);
+    font-weight: var(--general-semibold);
+    color: var(--color-gray-900);
+
+    margin-bottom: -8px;
+}
+
+.hero-section-data dd {
+    font-size: var(--font-20px);
+    font-weight: var(--general-medium);
+    color: var(--color-gray-800);
+}
+
+
+@media only screen and (min-width: 992px) {
+    .hero-section {
+        flex-direction: row;
+        gap: 0;
+    }
+
+    .hero-section-content {
+        width: 48%;
+    }
+
+    .hero-section-data {
+        justify-content: flex-start;
+        gap: 3rem;
+    }
+}
+
+
+
+/* ABOUT CONCEPTO */
+.about-concepto {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-bottom: 150px;
+}
+
+.about-concepto-img {
+    order: 1;
+}
+
+.about-concepto-content {
+    order: 0;
+}
+
+.about-concepto-features {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media only screen and (min-width: 1200px) {
+    .about-concepto {
+      flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    
+        padding-bottom: 150px;
+    }
+
+    .about-concepto-img {
+        width: 44%;
+        order: 0;
+    }
+    
+    .about-concepto-content {
+        width: 50%;
+        order: 1;
+    }
+}
+
+
+
+/* CATEGORÍAS */
+
+
+@media only screen and (min-width: 600px) {}
+
+@media only screen and (min-width: 992px) {}
+
+@media only screen and (min-width: 1200px) {}
