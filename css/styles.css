@@ -370,8 +370,13 @@ body {
     font-size: var(--font-20px);
     color: var(--color-gray-100);
 
-
+    transition: all 240ms ease-out;
     cursor: pointer;
+}
+
+.main-cta:hover {
+    background-color: var(--color-primary-600);
+    box-shadow: 0px 4px 40px 8px hsla(232, 90%, 72%, 0.39);
 }
 
 .hero-section-cta {
@@ -379,6 +384,14 @@ body {
     max-width: 16.9375rem;
     padding: 10px 10px 10px 37px;
     margin: 0 0 32px 0;
+}
+
+.hero-section-cta .svg-hover{
+    transition: all 240ms ease-out;
+}
+
+.hero-section-cta:hover .svg-hover {
+    fill: var(--color-primary-500);
 }
 
 
@@ -549,8 +562,6 @@ body {
 }
 
 
-
-
 .categorias-links-icon {
     background-color: var(--color-gray-100);
     border-radius: 0.5rem;
@@ -565,6 +576,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    align-items: center;
     gap: 1rem;
 
     border: 0.0313rem solid var(--color-primary-400);
@@ -702,8 +714,8 @@ body {
     flex-direction: column;
     justify-content: space-between;
     gap: 4rem;
-    padding: 100px 20px 80px 20px; 
- 
+    padding: 100px 20px 80px 20px;
+
     position: relative;
 }
 
