@@ -252,7 +252,7 @@ body {
         margin-bottom: 240px;
     }
 
-    .mb-d-200{
+    .mb-d-200 {
         margin-bottom: 200px;
     }
 }
@@ -316,12 +316,10 @@ body {
     flex-direction: row;
     justify-content: space-between;
 
-    padding: 2rem 0;
-
     width: 85%;
     max-width: 1600px;
+    padding: 2rem 0;
 }
-
 
 #primary-navigation {
     display: flex;
@@ -329,7 +327,6 @@ body {
     justify-content: center;
     gap: 2rem;
 }
-
 
 .navigation-anchor {
     font-weight: var(--general-medium);
@@ -358,22 +355,9 @@ body {
     stroke: var(--color-primary-500);
 }
 
-.active>a {
-    color: var(--color-gray-1000);
-    position: relative;
-}
-
-.active>a::after {
-    content: url(../assets/svg/dot.svg);
-    position: absolute;
-    left: 48%;
-    top: 70%;
-}
-
-
 .navbar-cart>a {
     display: flex;
-    gap: 0.5rem;
+    gap: 1rem;
     justify-content: center;
     align-items: center;
 }
@@ -392,6 +376,45 @@ body {
 
 .navbar-cart:hover .navigation-anchor {
     color: var(--color-primary-500);
+}
+
+.navbar-cart>a>div {
+    position: relative;
+}
+
+.cart-count {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    display: block;
+    line-height: 1;
+}
+
+.cart-count::after {
+    display: inline-block;
+    text-align: center;
+    padding: 0.1rem 0.1rem 0 0;
+    content: attr(data-cart-count);
+    font-family: var(--switzer-font);
+    font-size: var(--font-14px);
+    min-height: 20px;
+    min-width: 20px;
+    color: var(--color-gray-100);
+    background-color: var(--color-primary-600);
+    border-radius: 6px;
+    letter-spacing: -1px;
+}
+
+.active>a {
+    color: var(--color-gray-1000);
+    position: relative;
+}
+
+.active>a::after {
+    content: url(../assets/svg/dot.svg);
+    position: absolute;
+    left: 48%;
+    top: 70%;
 }
 
 .mobile-nav-toggle {
@@ -414,7 +437,7 @@ body {
         justify-content: flex-start;
         gap: 2rem;
 
-        padding: min(20vh, 6rem) 2rem;
+        padding: 7rem 2rem 0 2rem;
 
         position: fixed;
         inset: 0 0 0 20%;
@@ -451,7 +474,6 @@ body {
         background-image: url(../assets/svg/close.svg);
     }
 
-
     .anchor-with-icon {
         justify-content: left;
     }
@@ -468,8 +490,6 @@ body {
         content: "";
         position: absolute;
     }
-
-
 
 }
 
@@ -490,10 +510,6 @@ body {
         width: 90%;
     }
 }
-
-
-
-
 
 
 
@@ -544,8 +560,6 @@ body {
     font-size: clamp(1rem, 1vw + 0.9rem, 1.25rem);
     line-height: 135%;
 }
-
-
 
 .main-cta {
     display: flex;
@@ -827,7 +841,6 @@ body {
 .card-img>img {
     border-radius: 32px 32px 0 0;
 }
-
 
 .card-content {
     background-color: var(--color-gray-100);
