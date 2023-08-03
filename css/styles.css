@@ -505,7 +505,7 @@ body {
     align-items: center;
     gap: 2rem;
 
-    padding: min(10vh, 140px) 0 0 0;
+    padding: 4rem 0 0 0;
 }
 
 .hero-section-subtitle {
@@ -614,6 +614,7 @@ body {
     .hero-section {
         flex-direction: row;
         gap: 0;
+        padding: min(12vh, 140px) 0 0 0;
     }
 
     .hero-section-content {
