@@ -89,7 +89,7 @@ a {
 
     --color-gray-1000: hsl(211, 73%, 14%);
     --color-gray-900: hsl(217, 18%, 23%);
-    --color-gray-800: hsl(218, 23%, 31%);
+    --color-gray-800: hsl(218.18deg 22.68% 38.04%);
     --color-gray-100: hsl(0, 0%, 100%);
 
     --color-subtitle: hsl(227, 38%, 53%);
@@ -179,7 +179,7 @@ body {
 
 @media only screen and (min-width: 1200px) {
     .h1-bigger {
-        font-size: clamp(2rem, 1vw + 1.9rem, 2.75rem);
+        font-size: clamp(2rem, 1vw + 1.9rem, 4rem);
     }
 }
 
@@ -235,12 +235,20 @@ body {
     margin-bottom: 32px;
 }
 
+.mb-40 {
+    margin-bottom: 40px;
+}
+
 .mb-56 {
     margin-bottom: 56px;
 }
 
 .mb-64 {
     margin-bottom: 64px;
+}
+
+.mb-100 {
+    margin-bottom: 100px;
 }
 
 .mb-200 {
@@ -255,11 +263,26 @@ body {
     .mb-d-200 {
         margin-bottom: 200px;
     }
+
+    .mb-d-56 {
+        margin-bottom: 56px;
+    }
 }
 
 .mt-8 {
     margin-top: 8px;
 }
+
+.mt-64 {
+    margin-top: 4rem;
+}
+
+@media only screen and (min-width: 992px) {
+    .mt-64 {
+        margin-top: min(12vh, 140px);
+    }
+}
+
 
 
 /*Decoración*/
@@ -999,6 +1022,94 @@ footer {
 
     .footer-credits {
         align-items: flex-start;
+    }
+}
+
+
+
+/* COURSES PAGE */
+/* Filters */
+.filters-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: self-end;
+}
+
+.filters {
+    display: flex;
+    flex-direction: row;
+    align-items: self-end;
+    gap: 2.5rem;
+
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    /* Internet Explorer 10+ */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.filters::-webkit-scrollbar {
+    display: none;
+    /* Safari and Chrome */
+}
+
+.filters>li {
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.filters>li:hover .icon-container-filter {
+    background-color: var(--color-background-600);
+}
+
+.filters>li:hover .filter-title {
+    color: var(--color-primary-500);
+}
+
+.icon-container-filter {
+    background-color: transparent;
+    border-radius: 0.5rem;
+    width: fit-content;
+    transition: all 240ms ease-in-out;
+}
+
+.svg-small {
+    width: 34px;
+    height: 34px;
+}
+
+.filter-title,
+.filter-counter {
+    font-family: var(--switzer-font);
+    font-weight: var(--switzer-medium);
+    font-size: var(--font-16px);
+    color: var(--color-gray-800);
+    transition: all 240ms ease-in-out;
+}
+
+.filter-counter {
+    display: none;
+}
+
+.filter-active .filter-title {
+    color: var(--color-gray-1000);
+}
+
+.filter-active .icon-container-filter {
+    background-color: var(--color-background-600);
+}
+
+
+@media only screen and (min-width: 992px) {
+    .filter-counter {
+        display: block;
+    }
+
+    .filters {
+        gap: 3rem;
     }
 }
 
