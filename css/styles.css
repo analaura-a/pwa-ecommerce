@@ -279,7 +279,7 @@ body {
         margin-bottom: 200px;
     }
 
-    .mb-d-48{
+    .mb-d-48 {
         margin-bottom: 48px;
     }
 
@@ -1638,9 +1638,7 @@ footer {
 
 
 /* CHECKOUT PAGE */
-
 /* Contenedores */
-
 .checkout-container {
     display: flex;
     flex-direction: column;
@@ -1670,7 +1668,6 @@ footer {
 
     margin-bottom: 48px;
 }
-
 
 .form-input {
     display: flex;
@@ -1713,7 +1710,6 @@ footer {
     padding: 16px 16px 16px 16px;
     border: none;
 }
-
 
 .pago-seguro {
     display: flex;
@@ -1793,6 +1789,25 @@ footer {
         height: 100px;
     }
 }
+
+
+
+/* STATUS PAGE */
+.status .empty-cart {
+    padding: 20px 0;
+}
+
+.status .empty-cart .h2 {
+    color: var(--color-gray-1000);
+}
+
+@media only screen and (min-width: 992px) {
+    .status .empty-cart {
+        width: 50%;
+        padding: 40px 0;
+    }
+}
+
 
 
 
