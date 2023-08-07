@@ -1,9 +1,14 @@
 /* Elementos HTML DOM */
 containerTrending = document.getElementById('container-trending');
+uxCategory = document.getElementById('ux-category');
 uxCounter = document.getElementById('ux-counter');
+frontendCategory = document.getElementById('frontend-category');
 frontendCounter = document.getElementById('frontend-counter');
+backendCategory = document.getElementById('backend-category');
 backendCounter = document.getElementById('backend-counter');
+dataCategory = document.getElementById('data-category');
 dataCounter = document.getElementById('data-counter');
+
 
 
 /* FETCH */
@@ -60,18 +65,24 @@ function createDatabase() {
             fetchCourses()
                 .then((data) => {
                     JSONtoDatabase(data);
+
+                    // Renderizamos los cursos populares
+                    renderTrendingCourses();
+
+                    // Renderizamos los contadores de los cursos
+                    renderCounterCategories();
                 })
                 .catch((error) => console.log('Ocurrió un error intentando obtener el JSON de las listas', error));
         };
 
-        // Almacenamos en localStorage que la base de datos se inicializó
-        localStorage.setItem('dbInitialized', true);
-
         // Renderizamos los cursos populares
         renderTrendingCourses();
 
-        //Renderizamos los contadores de los cursos
+        // Renderizamos los contadores de los cursos
         renderCounterCategories();
+
+        // Almacenamos en localStorage que la base de datos se inicializó
+        localStorage.setItem('dbInitialized', true);
     }
 
 
@@ -82,8 +93,7 @@ createDatabase();
 
 
 
-
-/* Transacción para agregar los cursos en el JSON a indexedDB */
+/* Agregar los cursos en el JSON a indexedDB */
 function JSONtoDatabase(data) {
 
     const transaction = db.transaction(['courses'], 'readwrite');
@@ -137,8 +147,6 @@ function JSONtoDatabase(data) {
 
 
 
-
-
 /* Renderizar cursos populares */
 function renderTrendingCourses() {
 
@@ -152,27 +160,35 @@ function renderTrendingCourses() {
     request.onsuccess = function (event) {
 
         let array = event.target.result;
-        console.log(array);
 
         array.forEach((course) => {
 
-            //Creamos una card por cada lista en la base de datos
-            let cardCourse = `<li class="course-card">
-            <a href="html/detail.html" class="anchor-detail">
-                <div class="card-img">
-                    <img src="${course.cover}" alt="">
-                </div>
-                <div class="card-content">
-                    <p class="card-content-category mb-8">${course.category}</p>
-                    <h3 class="h3 mb-4">${course.name}</h3>
-                    <p class="card-content-paragraph mb-12">${course.short_description}</p>
-                    <p class="card-content-price">$${course.price.toLocaleString('de-DE')}</p>
-                </div>
-            </a>
-        </li>`;
+            //Creamos una card por cada curso
+            let divCourseCard = document.createElement("div");
+            divCourseCard.classList.add("course-card");
+
+            let cardContent = `
+                <a href="html/detail.html" class="anchor-detail">
+                    <div class="card-img">
+                        <img src="${course.cover}" alt="">
+                    </div>
+                    <div class="card-content">
+                        <p class="card-content-category mb-8">${course.category}</p>
+                        <h3 class="h3 mb-4">${course.name}</h3>
+                        <p class="card-content-paragraph mb-12">${course.short_description}</p>
+                        <p class="card-content-price">$${course.price.toLocaleString('de-DE')}</p>
+                    </div>
+                </a>`;
+
+            divCourseCard.innerHTML = cardContent;
 
             //Las agregamos al contenedor
-            containerTrending.innerHTML += cardCourse;
+            containerTrending.appendChild(divCourseCard);
+
+            //Agregamos un evento para obtener su ID
+            divCourseCard.addEventListener("click", () => {
+                localStorage.setItem('chosenCourse', course.id);
+            });
 
         });
 
@@ -187,8 +203,7 @@ function renderTrendingCourses() {
 
 
 
-
-/* Renderizar los contadores de curso por categoría */
+/* Renderizar contadores de curso por categoría */
 function renderCounterCategories() {
 
     //Iniciamos la transacción de lectura de la base de datos
@@ -204,7 +219,7 @@ function renderCounterCategories() {
         uxCounter.textContent = `${count} cursos.`;
     };
 
-    requestUX.onerror = function (event) {
+    requestUX.onerror = function () {
         uxCounter.textContent = "0 cursos.";
     };
 
@@ -216,7 +231,7 @@ function renderCounterCategories() {
         frontendCounter.textContent = `${count} cursos.`;
     };
 
-    requestFrontend.onerror = function (event) {
+    requestFrontend.onerror = function () {
         frontendCounter.textContent = "0 cursos.";
     };
 
@@ -228,7 +243,7 @@ function renderCounterCategories() {
         backendCounter.textContent = `${count} cursos.`;
     };
 
-    requestBackend.onerror = function (event) {
+    requestBackend.onerror = function () {
         backendCounter.textContent = "0 cursos.";
     };
 
@@ -240,30 +255,29 @@ function renderCounterCategories() {
         dataCounter.textContent = `${count} cursos.`;
     };
 
-    requestBackend.onerror = function (event) {
+    requestBackend.onerror = function () {
         dataCounter.textContent = "0 cursos.";
     };
 
 };
 
 
+/* Eventos para detectar la categoría seleccionada */
+uxCategory.addEventListener("click", () => {
+    localStorage.setItem('chosenCategory', "UX/UI");
+});
 
+frontendCategory.addEventListener("click", () => {
+    localStorage.setItem('chosenCategory', "Frontend");
+});
 
+backendCategory.addEventListener("click", () => {
+    localStorage.setItem('chosenCategory', "Backend");
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+dataCategory.addEventListener("click", () => {
+    localStorage.setItem('chosenCategory', "Data");
+});
 
 
 
