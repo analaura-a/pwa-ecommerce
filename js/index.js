@@ -8,6 +8,7 @@ backendCategory = document.getElementById('backend-category');
 backendCounter = document.getElementById('backend-counter');
 dataCategory = document.getElementById('data-category');
 dataCounter = document.getElementById('data-counter');
+todosCategory = document.getElementById('explorar');
 
 
 
@@ -277,6 +278,10 @@ backendCategory.addEventListener("click", () => {
 
 dataCategory.addEventListener("click", () => {
     localStorage.setItem('chosenCategory', "Data");
+});
+
+todosCategory.addEventListener("click", () => {
+    localStorage.setItem('chosenCategory', "Todos");
 });
 
 

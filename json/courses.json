@@ -201,7 +201,7 @@
         "name": "Cómo crear modelos de Machine Learning robustos y consistentes",
         "category": "Data",
         "cover": "../assets/png/course-machine-learning.png",
-        "price": 13.500,
+        "price": 13500,
         "short_description": "Aprende a crear algoritmos de Machine Learning en Python de la mano de expertos en Data Science.",
         "teacher_name": "Sebastian Tunnell",
         "teacher_profession": "Machine Learning Engineer en Datademia",
@@ -254,7 +254,7 @@
         "trending": "false"
     },
     {
-        "name": "Cómo crear aplicaciones utilizando modelo MVC con PHP",
+        "name": "Cómo crear aplicaciones utilizando el modelo MVC con PHP",
         "category": "Backend",
         "cover": "../assets/png/course-mvc.png",
         "price": 9500,
@@ -340,7 +340,7 @@
         "name": "Cómo extraer datos de la web utilizando Python",
         "category": "Data",
         "cover": "../assets/png/course-data-python.png",
-        "price": 13.500,
+        "price": 13500,
         "short_description": "Aprendé los fundamentos del Web Scraping para extraer y analizar datos de la web con Python.",
         "teacher_name": "Sebastian Tunnell",
         "teacher_profession": "Machine Learning Engineer en Datademia",
