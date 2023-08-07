@@ -1,6 +1,14 @@
 /* Elementos HTML DOM */
-containerCourses = document.getElementById('container-courses');
-todosCategory = document.getElementById('explorar');
+let containerCourses = document.getElementById('container-courses');
+let todosCategory = document.getElementById('explorar');
+let filters = document.querySelectorAll('.filter');
+let filterTodos = document.getElementById('filter-todos');
+let filterUx = document.getElementById('filter-ux_ui');
+let filterFrontend = document.getElementById('filter-frontend');
+let filterBackend = document.getElementById('filter-backend');
+let filterData = document.getElementById('filter-data');
+
+
 
 
 /* FETCH */
@@ -143,6 +151,17 @@ if (!chosenCategory) {
     console.log(chosenCategory);
 }
 
+function loadSelectedCategory() {
+
+    let chosenCategoryID = localStorage.getItem('chosenCategory').toLocaleLowerCase().replace('/', '_');
+
+    let chosenFilter = document.getElementById(`filter-${chosenCategoryID}`);
+    chosenFilter.classList.add("filter-active");
+
+}
+
+loadSelectedCategory();
+
 
 
 /* Renderizar los cursos elegidos */
@@ -199,7 +218,7 @@ function renderCourses() {
         };
 
         request.onerror = function (event) {
-            console.log('Ocurrió un error intentando mostrar los cursos en tendencia', event);
+            console.log('Ocurrió un error intentando mostrar los cursos', event);
         };
 
     } else {
@@ -245,7 +264,7 @@ function renderCourses() {
         };
 
         request.onerror = function (event) {
-            console.log('Ocurrió un error intentando mostrar los cursos en tendencia', event);
+            console.log('Ocurrió un error intentando mostrar los cursos', event);
         };
 
     }
@@ -255,14 +274,55 @@ function renderCourses() {
 
 
 
-
-
-
-
-
 /* Eventos para detectar la categoría seleccionada */
 todosCategory.addEventListener("click", () => {
     localStorage.setItem('chosenCategory', "Todos");
+});
+
+filterTodos.addEventListener("click", () => {
+    localStorage.setItem('chosenCategory', "Todos");
+    chosenCategory = localStorage.getItem('chosenCategory');
+    renderCourses();
+});
+
+filterUx.addEventListener("click", () => {
+    localStorage.setItem('chosenCategory', "UX/UI");
+    chosenCategory = localStorage.getItem('chosenCategory');
+    renderCourses();
+});
+
+filterFrontend.addEventListener("click", () => {
+    localStorage.setItem('chosenCategory', "Frontend");
+    chosenCategory = localStorage.getItem('chosenCategory');
+    renderCourses();
+});
+
+filterBackend.addEventListener("click", () => {
+    localStorage.setItem('chosenCategory', "Backend");
+    chosenCategory = localStorage.getItem('chosenCategory');
+    renderCourses();
+});
+
+filterData.addEventListener("click", () => {
+    localStorage.setItem('chosenCategory', "Data");
+    chosenCategory = localStorage.getItem('chosenCategory');
+    renderCourses();
+});
+
+/* Evento para cambiar la interfaz */
+filters.forEach(boton => {
+
+    boton.addEventListener("click", (e) => {
+
+        filters.forEach(boton => {
+            boton.classList.remove("filter-active");
+            console.log('boton')
+        });
+
+        e.currentTarget.classList.add("filter-active");
+
+    });
+
 });
 
 

@@ -1,14 +1,14 @@
 /* Elementos HTML DOM */
-containerTrending = document.getElementById('container-trending');
-uxCategory = document.getElementById('ux-category');
-uxCounter = document.getElementById('ux-counter');
-frontendCategory = document.getElementById('frontend-category');
-frontendCounter = document.getElementById('frontend-counter');
-backendCategory = document.getElementById('backend-category');
-backendCounter = document.getElementById('backend-counter');
-dataCategory = document.getElementById('data-category');
-dataCounter = document.getElementById('data-counter');
-todosCategory = document.getElementById('explorar');
+const containerTrending = document.getElementById('container-trending');
+const uxCategory = document.getElementById('ux-category');
+const uxCounter = document.getElementById('ux-counter');
+const frontendCategory = document.getElementById('frontend-category');
+const frontendCounter = document.getElementById('frontend-counter');
+const backendCategory = document.getElementById('backend-category');
+const backendCounter = document.getElementById('backend-counter');
+const dataCategory = document.getElementById('data-category');
+const dataCounter = document.getElementById('data-counter');
+const todosCategory = document.getElementById('explorar');
 
 
 
