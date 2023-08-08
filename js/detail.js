@@ -16,6 +16,8 @@ let requirements = document.getElementById("course-requirements");
 let subjects = document.getElementById("course-subjects");
 let mainCTA = document.getElementById("mainCTA");
 let mainCTAText = document.getElementById("main-cta-text");
+let navCartCount = document.getElementById("cart-count");
+let navCartTotal = document.getElementById("cart-total");
 
 
 
@@ -70,6 +72,7 @@ function createDatabase() {
         renderCourseInfo();
         renderCourseDetails();
         renderMainCTA();
+        actualizarContadorCarrito();
 
     }
 
@@ -261,6 +264,9 @@ function addToCart() {
         //Actualizamos el CTA
         renderMainCTA();
 
+        //Actualizamos el carrito en el nav
+        actualizarContadorCarrito();
+
     }
 
     request.onerror = function (event) {
@@ -274,6 +280,20 @@ function addToCart() {
 function addToCartInLocalStorage(course) {
     carrito.push(course);
     localStorage.setItem("carrito", JSON.stringify(carrito));
+}
+
+
+
+/*Función para actualizar las cantidades del carrito en el nav*/
+const actualizarContadorCarrito = function () {
+
+    let cantidad = carrito.length;
+    navCartCount.setAttribute("data-cart-count", cantidad);
+
+    let total = carrito.reduce((acc, course) => acc + course.price, 0);
+    console.log(total);
+    navCartTotal.textContent = `$${total.toLocaleString('de-DE')}`;
+    
 }
 
 
