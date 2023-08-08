@@ -18,6 +18,7 @@ let mainCTA = document.getElementById("mainCTA");
 let mainCTAText = document.getElementById("main-cta-text");
 let navCartCount = document.getElementById("cart-count");
 let navCartTotal = document.getElementById("cart-total");
+let notification = document.getElementById("notification");
 
 
 
@@ -268,6 +269,9 @@ function addToCart() {
         //Actualizamos el carrito en el nav
         actualizarContadorCarrito();
 
+        //Notificamos al usuario
+        notify();
+
     }
 
     request.onerror = function (event) {
@@ -294,6 +298,30 @@ const actualizarContadorCarrito = function () {
     let total = carrito.reduce((acc, course) => acc + course.price, 0);
     console.log(total);
     navCartTotal.textContent = `$${total.toLocaleString('de-DE')}`;
+
+}
+
+
+
+/* Notificación */
+function notify() {
+
+    notification.classList.remove("none");
+    setTimeout(() => {
+        notification.classList.remove("hidden");
+    }, 200);
+
+
+    setTimeout(() => {
+        notification.classList.add("hidden");
+
+        setTimeout(() => {
+            notification.classList.add("none");
+        }, 200);
+
+    }, 5000);
+
+    //Dependiendo si se agregó al carrito o no, cambia el mensaje y el SVG.
 
 }
 
