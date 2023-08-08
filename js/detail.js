@@ -14,11 +14,24 @@ let duration = document.getElementById("course-duration");
 let level = document.getElementById("course-level");
 let requirements = document.getElementById("course-requirements");
 let subjects = document.getElementById("course-subjects");
+let mainCTA = document.getElementById("mainCTA");
+let mainCTAText = document.getElementById("main-cta-text");
 
 
 
 /* Obtenemos el índice del curso a través de localStorage */
 let courseIndex = parseInt(localStorage.getItem('chosenCourse'));
+
+
+/* Carrito de compras */
+let carrito = [];
+let carritoJSON = JSON.parse(localStorage.getItem('carrito'));
+
+if (carritoJSON) {
+    carritoJSON.forEach(course => {
+        carrito.push(course);
+    })
+}
 
 
 
@@ -56,6 +69,7 @@ function createDatabase() {
 
         renderCourseInfo();
         renderCourseDetails();
+        renderMainCTA();
 
     }
 
@@ -171,6 +185,95 @@ function renderCourseDetails() {
     //     mainTitle.textContent = 'Ocurrió un problema al intentar cargar esta lista...';
     // };
 
+}
+
+
+
+/* Funcionalidad del CTA dependiendo del estado del curso */
+mainCTA.addEventListener("click", () => {
+
+    //Identificamos al carrito
+    let carritoJSON = JSON.parse(localStorage.getItem('carrito'));
+    if (!carritoJSON) {
+        carritoJSON = [];
+    }
+
+    //Si el curso ya está en el carrito...
+    if (carritoJSON.some(course => course.id == courseIndex)) {
+
+        console.log("Ya estoy en el carrito");
+        location.href = "cart.html";
+
+    } else {
+
+        //Si el curso todavía no está en el carrito...
+        console.log("No estoy en el carrito, voy a agregarme");
+        addToCart();
+    }
+
+})
+
+
+
+//Función para actualizar el texto del CTA
+function renderMainCTA() {
+
+    let carritoJSON = JSON.parse(localStorage.getItem('carrito'));
+    if (!carritoJSON) {
+        carritoJSON = [];
+    }
+
+    //Si el curso ya está en el carrito...
+    if (carritoJSON.some(course => course.id == courseIndex)) {
+
+        console.log("Este curso ya está en el carrito");
+        mainCTAText.textContent = "Ir al carrito";
+
+    } else {
+
+        //Si el curso todavía está en el carrito...
+        console.log("No estoy en el carrito aún");
+        mainCTAText.textContent = "Agregar al carrito";
+
+    }
+
+}
+
+
+
+/* Agregar al carrito */
+function addToCart() {
+
+    //Iniciamos la transacción
+    const transaction = db.transaction(['courses'], 'readonly');
+    let objectStore = transaction.objectStore('courses');
+
+    let request = objectStore.get(courseIndex);
+
+    request.onsuccess = function (event) {
+
+        let selectedCourse = event.target.result;
+        console.log(selectedCourse);
+
+        //Agregamos el curso al carrito en localStorage
+        addToCartInLocalStorage(selectedCourse);
+
+        //Actualizamos el CTA
+        renderMainCTA();
+
+    }
+
+    request.onerror = function (event) {
+        console.log('Ocurrió un error intentando agregar este curso al carrito', event);
+    }
+}
+
+
+
+/* Agregar un curso al carrito en localStorage */
+function addToCartInLocalStorage(course) {
+    carrito.push(course);
+    localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
 
