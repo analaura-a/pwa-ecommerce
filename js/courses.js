@@ -7,7 +7,7 @@ let filterUx = document.getElementById('filter-ux_ui');
 let filterFrontend = document.getElementById('filter-frontend');
 let filterBackend = document.getElementById('filter-backend');
 let filterData = document.getElementById('filter-data');
-
+let bannerContainer = document.getElementById('banner');
 
 
 
@@ -24,7 +24,7 @@ async function fetchCourses() {
 
 
 
-/* IndexedDB */
+/* Base de datos */
 let db;
 let dbInitialized = localStorage.getItem('dbInitialized'); //Estado de la base de datos
 
@@ -79,8 +79,6 @@ function createDatabase() {
         // Almacenamos en localStorage que la base de datos se inicializó
         localStorage.setItem('dbInitialized', true);
     }
-
-
 
 };
 
@@ -309,21 +307,49 @@ filterData.addEventListener("click", () => {
     renderCourses();
 });
 
-/* Evento para cambiar la interfaz */
+
+
+/* Eventos para los filtros */
 filters.forEach(boton => {
 
     boton.addEventListener("click", (e) => {
 
+        //Cambios en la interfaz
         filters.forEach(boton => {
             boton.classList.remove("filter-active");
-            console.log('boton')
         });
-
         e.currentTarget.classList.add("filter-active");
+
+        //Aparición del banner flotante
+        bannerFlotante();
 
     });
 
 });
+
+
+
+/* Función para rotar el banner flotante */
+let banners = ['banner-1', 'banner-2', 'banner-3'];
+let timerID = null;
+
+function bannerFlotante() {
+
+    bannerContainer.className = " ";
+
+    //Selección de uno de los banners al azar
+    const eleccionBanner = Math.floor(Math.random() * 3);
+    const eleccionRandom = banners[eleccionBanner];
+    bannerContainer.classList.add("banner", eleccionRandom);
+
+    //Desaparición del banner después de 10 segundos
+    clearTimeout(timerID);
+
+    timerID = setTimeout(() => {
+        bannerContainer.className = "hidden";
+    }, 10000);
+
+}
 
 
 

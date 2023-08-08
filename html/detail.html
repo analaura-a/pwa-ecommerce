@@ -115,75 +115,25 @@
                         <div id="course-image"></div>
                     </a>
 
-                    <p class="card-content-category mb-12">Diseño UX/UI</p>
-                    <h1 class="h1 h1-bigger mb-40">Design systems desde 0 en Figma</h1>
+                    <p class="card-content-category mb-12" id="course-category"></p>
+                    <h1 class="h1 h1-bigger mb-40" id="course-name"></h1>
 
                     <div class="course-professor mb-40">
-                        <img src="../assets/png/profesor-ejemplo.png" alt="">
+                        <img id="course-professor-photo">
                         <div class="course-professor-info">
-                            <p>Julia Lopez</p>
-                            <p>Product Designer en Mercado Libre</p>
+                            <p id="course-professor-name"></p>
+                            <p id="course-professor-job"></p>
                         </div>
                     </div>
 
                     <div class="course-about mb-40">
                         <h2 class="h3 mb-12">Acerca del curso</h2>
-                        <p class="paragraph mb-8">¿Terminaste hace poco algún curso, bootcamp o carrera del mundo IT?
-                            Seguramente sientas que lo
-                            aprendido no es suficiente. En concepto creamos una plataforma en la que, a través de
-                            contenido
-                            en formato de video, tanto principiantes como no tan principiantes puedan avanzar en su
-                            carrera
-                            digital y desarrollarse profesionalmente.</p>
-                        <p class="paragraph">¿Terminaste hace poco algún curso, bootcamp o carrera del mundo IT?
-                            Seguramente
-                            sientas que lo
-                            aprendido no es suficiente. En concepto creamos una plataforma en la que, a través de
-                            contenido
-                            en formato de video.</p>
+                        <div id="course-about"></div>
                     </div>
 
                     <div class="course-learnings">
                         <h2 class="h3 mb-16">Qué vas a aprender</h2>
-                        <ul>
-
-                            <li class="learning">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none"
-                                    viewbox="0 0 48 48">
-                                    <path stroke="#8BA5FF" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="3" d="m12 27.167 6 6.333 18-19" />
-                                </svg>
-                                <p class="paragraph">Seguramente sientas que lo sddddd aprendido no es suficiente.</p>
-                            </li>
-
-                            <li class="learning">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none"
-                                    viewbox="0 0 48 48">
-                                    <path stroke="#8BA5FF" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="3" d="m12 27.167 6 6.333 18-19" />
-                                </svg>
-                                <p class="paragraph">Seguramente sientas que lo sddddd aprendido no es suficiente.</p>
-                            </li>
-
-                            <li class="learning">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none"
-                                    viewbox="0 0 48 48">
-                                    <path stroke="#8BA5FF" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="3" d="m12 27.167 6 6.333 18-19" />
-                                </svg>
-                                <p class="paragraph">Seguramente sientas que lo sddddd aprendido no es suficiente.</p>
-                            </li>
-
-                            <li class="learning">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none"
-                                    viewbox="0 0 48 48">
-                                    <path stroke="#8BA5FF" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="3" d="m12 27.167 6 6.333 18-19" />
-                                </svg>
-                                <p class="paragraph">Seguramente sientas que lo sddddd aprendido no es suficiente.</p>
-                            </li>
-
-                        </ul>
+                        <ul id="course-learnings"></ul>
                     </div>
 
                 </div>
@@ -192,7 +142,7 @@
                 <div class="course-sidebar">
 
                     <div class="pb-40 separador">
-                        <p id="course-price" class="mb-24">$1.250</p><span class="price-money">ARS</span>
+                        <p id="course-price" class="mb-24"></p><span class="price-money">ARS</span>
 
                         <ul class="course-bullet-points mb-32">
                             <li>
@@ -202,7 +152,7 @@
                                         stroke-width="1.5"
                                         d="m26.246 12.877 2.288 4.614c.312.642 1.143 1.258 1.846 1.376l4.146.694c2.652.446 3.276 2.386 1.365 4.3l-3.224 3.25c-.546.55-.845 1.612-.676 2.372l.923 4.023c.728 3.185-.949 4.417-3.743 2.752l-3.887-2.32c-.702-.419-1.859-.419-2.574 0l-3.886 2.32c-2.782 1.665-4.472.42-3.744-2.752l.923-4.023c.169-.76-.13-1.822-.676-2.373l-3.223-3.25c-1.898-1.913-1.287-3.853 1.364-4.299l4.147-.694c.689-.118 1.52-.734 1.833-1.376l2.287-4.614c1.248-2.503 3.276-2.503 4.51 0Z" />
                                 </svg>
-                                <p id="course-rating" class="paragraph">4.8 puntuación promedio.</p>
+                                <p id="course-rating" class="paragraph"></p>
                             </li>
                             <li>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewbox="0 0 48 48"
@@ -210,7 +160,7 @@
                                     <path stroke="#3E58FF" stroke-linecap="round" stroke-width="1.5"
                                         d="M33.043 23.234a4.547 4.547 0 1 0 0-9.094m4.98 19.468.445.063A2.218 2.218 0 0 0 41 31.475V29.98c0-.978-.615-1.85-1.536-2.18a19.1 19.1 0 0 0-2.804-.766m-21.702-3.8a4.547 4.547 0 1 1 0-9.094m-4.98 19.468-.446.063A2.218 2.218 0 0 1 7 31.475V29.98c0-.978.615-1.85 1.536-2.18a19.101 19.101 0 0 1 2.804-.766m7.233-9.747a5.787 5.787 0 1 0 11.574 0 5.787 5.787 0 0 0-11.574 0Zm9.606 18.63 4.026.575a2 2 0 0 0 2.283-1.98V31.66a2.945 2.945 0 0 0-1.954-2.774 24.298 24.298 0 0 0-16.345 0 2.945 2.945 0 0 0-1.955 2.774v2.852a2 2 0 0 0 2.283 1.98l4.026-.575a27.001 27.001 0 0 1 7.636 0Z" />
                                 </svg>
-                                <p id="course-students" class="paragraph">14.563 personas lo tomaron.</p>
+                                <p id="course-students" class="paragraph"></p>
                             </li>
                         </ul>
 
@@ -240,7 +190,7 @@
                                     <path stroke="#3E58FF" stroke-width="1.5"
                                         d="M21.4 20.855a1.1 1.1 0 0 1 1.71-.915l4.717 3.145a1.1 1.1 0 0 1 0 1.83L23.11 28.06a1.1 1.1 0 0 1-1.71-.915v-6.29Z" />
                                 </svg>
-                                <p id="course-duration" class="paragraph">4 horas de video bajo demanda.</p>
+                                <p id="course-duration" class="paragraph"></p>
                             </li>
                             <li>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewbox="0 0 48 48"
@@ -282,11 +232,7 @@
 
                     <div class="pt-40">
                         <h2 class="h3 mb-12">Temas</h2>
-                        <ul class="course-subjects">
-                            <li>UX/UI</li>
-                            <li>UI</li>
-                            <li>Figma</li>
-                        </ul>
+                        <ul class="course-subjects" id="course-subjects"></ul>
                     </div>
 
                 </div>
