@@ -10,6 +10,7 @@ let filterData = document.getElementById('filter-data');
 let bannerContainer = document.getElementById('banner');
 let navCartCount = document.getElementById("cart-count");
 let navCartTotal = document.getElementById("cart-total");
+let filterCounter = document.getElementById("filter-counter");
 
 
 
@@ -89,6 +90,9 @@ function createDatabase() {
 
         // Renderizamos los cursos 
         renderCourses();
+
+        //Renderizamos el contador
+        counterResults();
 
         // Almacenamos en localStorage que la base de datos se inicializó
         localStorage.setItem('dbInitialized', true);
@@ -337,9 +341,58 @@ filters.forEach(boton => {
         //Aparición del banner flotante
         bannerFlotante();
 
+        //Actualización del contador de resultados
+        counterResults();
+
     });
 
 });
+
+
+
+/* Contador de resultados del filtro */
+function counterResults() {
+
+    //Iniciamos la transacción de lectura de la base de datos
+    const transaction = db.transaction(['courses'], 'readonly');
+    let objectStore = transaction.objectStore('courses');
+    let categoryIndex = objectStore.index("category");
+
+    if (chosenCategory === "Todos") {
+
+        let request = objectStore.count();
+
+        request.onsuccess = function (event) {
+
+            let results = event.target.result;
+            filterCounter.textContent = `${results} resultados`;
+
+        };
+
+        request.onerror = function (event) {
+            console.log('Ocurrió un error intentando contar los resultados', event);
+            filterCounter.textContent = `0 resultados`;
+        };
+
+    } else {
+
+        let request = categoryIndex.count(chosenCategory);
+
+        request.onsuccess = function (event) {
+
+            let results = event.target.result;
+            filterCounter.textContent = `${results} resultados`;
+
+        };
+
+        request.onerror = function (event) {
+            console.log('Ocurrió un error intentando contar los resultados', event);
+            filterCounter.textContent = `0 resultados`;
+        };
+
+    }
+
+}
 
 
 
