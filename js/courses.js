@@ -8,6 +8,8 @@ let filterFrontend = document.getElementById('filter-frontend');
 let filterBackend = document.getElementById('filter-backend');
 let filterData = document.getElementById('filter-data');
 let bannerContainer = document.getElementById('banner');
+let navCartCount = document.getElementById("cart-count");
+let navCartTotal = document.getElementById("cart-total");
 
 
 
@@ -20,6 +22,18 @@ async function fetchCourses() {
     } catch (error) {
         console.log('Ocurrió un error al intentar obtener la información del JSON', error);
     }
+}
+
+
+
+/* Carrito de compras */
+let carrito = [];
+let carritoJSON = JSON.parse(localStorage.getItem('carrito'));
+
+if (carritoJSON) {
+    carritoJSON.forEach(course => {
+        carrito.push(course);
+    })
 }
 
 
@@ -358,6 +372,20 @@ let vaciarContainer = function () {
     containerCourses.innerHTML = "";
 };
 
+
+
+/*Función para actualizar las cantidades del carrito en el nav*/
+const actualizarContadorCarrito = function () {
+
+    let cantidad = carrito.length;
+    navCartCount.setAttribute("data-cart-count", cantidad);
+
+    let total = carrito.reduce((acc, course) => acc + course.price, 0);
+    console.log(total);
+    navCartTotal.textContent = `$${total.toLocaleString('de-DE')}`;
+
+}
+actualizarContadorCarrito();
 
 
 /* Menú mobile */

@@ -25,6 +25,7 @@ let navCartTotal = document.getElementById("cart-total");
 let courseIndex = parseInt(localStorage.getItem('chosenCourse'));
 
 
+
 /* Carrito de compras */
 let carrito = [];
 let carritoJSON = JSON.parse(localStorage.getItem('carrito'));
@@ -293,7 +294,7 @@ const actualizarContadorCarrito = function () {
     let total = carrito.reduce((acc, course) => acc + course.price, 0);
     console.log(total);
     navCartTotal.textContent = `$${total.toLocaleString('de-DE')}`;
-    
+
 }
 
 

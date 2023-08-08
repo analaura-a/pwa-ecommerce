@@ -1,3 +1,33 @@
+/* Elementos HTML DOM */
+let navCartCount = document.getElementById("cart-count");
+let navCartTotal = document.getElementById("cart-total");
+
+
+
+/* Carrito de compras */
+let carrito = [];
+let carritoJSON = JSON.parse(localStorage.getItem('carrito'));
+
+if (carritoJSON) {
+    carritoJSON.forEach(course => {
+        carrito.push(course);
+    })
+}
+
+
+
+/*Función para actualizar las cantidades del carrito en el nav*/
+const actualizarContadorCarrito = function () {
+
+    let cantidad = carrito.length;
+    navCartCount.setAttribute("data-cart-count", cantidad);
+
+    let total = carrito.reduce((acc, course) => acc + course.price, 0);
+    console.log(total);
+    navCartTotal.textContent = `$${total.toLocaleString('de-DE')}`;
+
+}
+actualizarContadorCarrito();
 
 
 

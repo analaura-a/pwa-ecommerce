@@ -9,7 +9,8 @@ const backendCounter = document.getElementById('backend-counter');
 const dataCategory = document.getElementById('data-category');
 const dataCounter = document.getElementById('data-counter');
 const todosCategory = document.getElementById('explorar');
-
+const navCartCount = document.getElementById("cart-count");
+const navCartTotal = document.getElementById("cart-total");
 
 
 /* FETCH */
@@ -21,6 +22,18 @@ async function fetchCourses() {
     } catch (error) {
         console.log('Ocurrió un error al intentar obtener la información del JSON', error);
     }
+}
+
+
+
+/* Carrito de compras */
+let carrito = [];
+let carritoJSON = JSON.parse(localStorage.getItem('carrito'));
+
+if (carritoJSON) {
+    carritoJSON.forEach(course => {
+        carrito.push(course);
+    })
 }
 
 
@@ -283,6 +296,21 @@ dataCategory.addEventListener("click", () => {
 todosCategory.addEventListener("click", () => {
     localStorage.setItem('chosenCategory', "Todos");
 });
+
+
+
+/*Función para actualizar las cantidades del carrito en el nav*/
+const actualizarContadorCarrito = function () {
+
+    let cantidad = carrito.length;
+    navCartCount.setAttribute("data-cart-count", cantidad);
+
+    let total = carrito.reduce((acc, course) => acc + course.price, 0);
+    console.log(total);
+    navCartTotal.textContent = `$${total.toLocaleString('de-DE')}`;
+
+}
+actualizarContadorCarrito();
 
 
 
