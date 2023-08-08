@@ -72,6 +72,8 @@ function renderCartPage() {
 
         container.appendChild(divContainer);
 
+        actualizarContadorCarrito();
+
     } else {
 
         console.log("no estoy vacío");
@@ -165,13 +167,12 @@ function renderCartPage() {
         renderCart();
         renderCartCount();
         renderCartTotal();
+        actualizarContadorCarrito();
 
     }
 }
 
 renderCartPage();
-
-
 
 
 
@@ -185,40 +186,53 @@ function renderCart() {
         //Creamos una card por cada curso
         let courseCard = document.createElement("li");
 
-        let cardContent = `
-        <img src="${course.cover}" alt="${course.name}" class="cart-card-img">
+        let img = document.createElement("img");
+        img.classList.add("cart-card-img");
+        img.setAttribute("src", `${course.cover}`);
+        img.setAttribute("alt", `${course.namer}`);
 
-        <div class="cart-card-info">
-            <div>
-                <h2>${course.name}</h2>
-                <p>Por ${course.teacher_name}</p>
-            </div>
-            <p>$${course.price.toLocaleString('de-DE')}</p>
-        </div>
+        let cardInfo = document.createElement("div");
+        cardInfo.classList.add("cart-card-info");
 
-        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewbox="0 0 48 48"
-            fill="none" class="svg-medium delete-cart-button">
-            <path stroke="#4b5b77" stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="1.5"
-                d="M36 15.973c-4.44-.44-8.907-.666-13.36-.666-2.64 0-5.28.133-7.92.4l-2.72.266m7.333-1.346.294-1.747c.213-1.267.373-2.213 2.626-2.213h3.494c2.253 0 2.426 1 2.626 2.226l.294 1.734m4.466 5.56-.866 13.426c-.147 2.094-.267 3.72-3.987 3.72h-8.56c-3.72 0-3.84-1.626-3.987-3.72l-.866-13.426M21.773 30h4.44m-5.546-5.333h6.666" />
-        </svg>`;
+        let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+        svg.setAttribute("width", "48");
+        svg.setAttribute("height", "48");
+        svg.setAttribute("viewBox", "0 0 48 48");
+        svg.setAttribute("fill", "none");
+        svg.setAttribute("id", `delete-${course.id}`);
+        svg.classList.add("svg-medium", "delete-cart-button");
+        svg.innerHTML = `<path stroke="#4b5b77" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M36 15.973c-4.44-.44-8.907-.666-13.36-.666-2.64 0-5.28.133-7.92.4l-2.72.266m7.333-1.346.294-1.747c.213-1.267.373-2.213 2.626-2.213h3.494c2.253 0 2.426 1 2.626 2.226l.294 1.734m4.466 5.56-.866 13.426c-.147 2.094-.267 3.72-3.987 3.72h-8.56c-3.72 0-3.84-1.626-3.987-3.72l-.866-13.426M21.773 30h4.44m-5.546-5.333h6.666" />`;
+        svg.addEventListener("click", deleteCourse);
 
-        courseCard.innerHTML = cardContent;
+        let divInfo = document.createElement("div");
+
+        let pPrice = document.createElement("p");
+        pPrice.textContent = `$${course.price.toLocaleString('de-DE')}`;
+
+        let h2 = document.createElement("h2");
+        h2.textContent = `${course.name}`;
+
+        let pTeacher = document.createElement("p");
+        pTeacher.textContent = `Por ${course.teacher_name}`;
+
+        courseCard.appendChild(img);
+        courseCard.appendChild(cardInfo);
+        courseCard.appendChild(svg);
+
+        cardInfo.appendChild(divInfo);
+        cardInfo.appendChild(pPrice);
+
+        divInfo.appendChild(h2);
+        divInfo.appendChild(pTeacher);
 
         //Las agregamos al contenedor
         let cartContainer = document.getElementById("cart-container");
-        cartContainer.appendChild(courseCard);
-
-        //Agregamos un evento para obtener su ID
-        // divCourseCard.addEventListener("click", () => {
-        //     localStorage.setItem('chosenCourse', course.id);
-        // });
+        cartContainer.appendChild(courseCard)
 
     });
 
 }
-
-
 
 
 
@@ -237,9 +251,6 @@ function renderCartCount() {
 
 
 
-
-
-
 /* Función para renderizar el resumen de compra */
 function renderCartTotal() {
 
@@ -253,16 +264,35 @@ function renderCartTotal() {
     subtotal.textContent = `$${results.toLocaleString('de-DE')}`;
     total.textContent = `$${results.toLocaleString('de-DE')}`;
 
-
 }
-
-
 
 
 
 /* Función para actualizar el carrito en el JSON */
 function updateJSONCart() {
     carritoJSON = JSON.parse(localStorage.getItem('carrito'));
+}
+
+
+
+/* Función para borrar un curso en particular del carrito */
+function deleteCourse(e) {
+
+    updateJSONCart();
+
+    //Identificamos el curso
+    let idButton = e.currentTarget.id;
+    let index = carritoJSON.findIndex(course => `delete-${course.id}` === idButton);
+
+    //Lo eliminamos del carrito
+    carritoJSON.splice(index, 1);
+
+    //Guardamos este carrito actualizado en localStorage
+    localStorage.setItem("carrito", JSON.stringify(carritoJSON));
+
+    //Actualizamos la interfaz
+    renderCartPage();
+
 }
 
 
@@ -279,17 +309,19 @@ function emptyCart() {
 }
 
 
-/*Función para actualizar las cantidades del carrito en el nav*/
-const actualizarContadorCarrito = function () {
 
-    let cantidad = carrito.length;
+/*Función para actualizar las cantidades del carrito en el nav*/
+function actualizarContadorCarrito() {
+
+    updateJSONCart();
+
+    let cantidad = carritoJSON.length;
     navCartCount.setAttribute("data-cart-count", cantidad);
 
-    let total = carrito.reduce((acc, course) => acc + course.price, 0);
+    let total = carritoJSON.reduce((acc, course) => acc + course.price, 0);
     navCartTotal.textContent = `$${total.toLocaleString('de-DE')}`;
 
 }
-actualizarContadorCarrito();
 
 
 
