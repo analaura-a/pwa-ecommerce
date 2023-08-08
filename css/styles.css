@@ -1491,6 +1491,7 @@ footer {
 .cart-card-img {
     max-width: 100px;
     height: 70px;
+    object-fit: cover;
 
     border-radius: 0.5rem;
 }
@@ -1750,6 +1751,7 @@ footer {
 .checkout-summary .cart-card-img {
     max-width: 130px;
     height: 70px;
+    object-fit: cover;
 }
 
 .checkout-summary .cart-container-cards {
@@ -1758,6 +1760,14 @@ footer {
 
 .checkout-summary .cart-container-cards>li {
     padding: 0;
+}
+
+.checkout-summary .cart-card-info h2 {
+    font-size: var(--font-18px);
+}
+
+.checkout-summary .cart-card-info>p {
+    font-size: var(--font-20px);
 }
 
 @media only screen and (min-width: 1024px) {

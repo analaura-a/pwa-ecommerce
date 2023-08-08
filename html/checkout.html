@@ -174,7 +174,7 @@
 
                         </fieldset>
 
-                        <input type="submit" value="Pagar $4.500" class="main-cta">
+                        <input type="submit" value="Pagar $4.500" class="main-cta" id="total-compra">
 
                     </form>
 
@@ -193,40 +193,12 @@
 
                     <h2 class="h2 pb-32 separador">Resumen</h2>
 
-                    <ul class="pb-32 pt-32 cart-container-cards separador">
-
-                        <li>
-                            <img src="../assets/png/ejemplo-1.png" alt="" class="cart-card-img">
-
-                            <div class="cart-card-info">
-                                <div>
-                                    <h2>Design systems desde 0 en Figma</h2>
-                                    <p>Por Julia Lopez</p>
-                                </div>
-                                <p>$1.250</p>
-                            </div>
-
-                        </li>
-
-                        <li>
-                            <img src="../assets/png/ejemplo-1.png" alt="" class="cart-card-img">
-
-                            <div class="cart-card-info">
-                                <div>
-                                    <h2>Design systems desde 0 en Figma</h2>
-                                    <p>Por Julia Lopez</p>
-                                </div>
-                                <p>$1.250</p>
-                            </div>
-
-                        </li>
-
-                    </ul>
+                    <ul class="pb-32 pt-32 cart-container-cards separador" id="courses-container"></ul>
 
                     <div class="pb-32 pt-32 separador">
                         <div class="subtotal flex-total mb-8">
                             <p>Subtotal</p>
-                            <p>$4.500</p>
+                            <p id="subtotal">$0</p>
                         </div>
 
                         <div class="subtotal flex-total">
@@ -237,7 +209,7 @@
 
                     <div class="total flex-total pt-32 pb-32">
                         <p>Total a pagar</p>
-                        <p>$4.500</p>
+                        <p id="totalCheckout">$0</p>
                     </div>
 
                 </div>

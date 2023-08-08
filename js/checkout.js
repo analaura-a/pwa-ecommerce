@@ -1,6 +1,10 @@
 /* Elementos HTML DOM */
 let navCartCount = document.getElementById("cart-count");
 let navCartTotal = document.getElementById("cart-total");
+let coursesContainer = document.getElementById("courses-container");
+let total = document.getElementById("totalCheckout");
+let subtotal = document.getElementById("subtotal");
+let totalInput = document.getElementById("total-compra");
 
 
 
@@ -12,7 +16,70 @@ if (carritoJSON) {
     carritoJSON.forEach(course => {
         carrito.push(course);
     })
+} else {
+    carritoJSON = [];
 }
+
+
+
+/* Renderizar resumen de compra */
+function renderOrderSummary() {
+
+    carritoJSON.forEach(course => {
+
+        let courseInCart = document.createElement("li");
+
+        let img = document.createElement("img");
+        img.classList.add("cart-card-img");
+        img.setAttribute("src", `${course.cover}`);
+        img.setAttribute("alt", `${course.name}`);
+
+
+        let divInfo = document.createElement("div");
+        divInfo.classList.add("cart-card-info");
+
+        let divInfoCourse = document.createElement("div");
+
+        let pPrice = document.createElement("p");
+        pPrice.textContent = `$${course.price.toLocaleString('de-DE')}`;
+
+        let h2 = document.createElement("h2");
+        h2.textContent = `${course.name}`;
+
+        let pTeacher = document.createElement("p");
+        pTeacher.textContent = `Por ${course.teacher_name}`;
+
+        courseInCart.appendChild(img);
+        courseInCart.appendChild(divInfo);
+
+        divInfo.appendChild(divInfoCourse);
+        divInfo.appendChild(pPrice);
+
+        divInfoCourse.appendChild(h2);
+        divInfoCourse.appendChild(pTeacher);
+
+        coursesContainer.appendChild(courseInCart);
+
+    });
+
+}
+
+renderOrderSummary();
+
+
+
+/* Función para mostrar el total */
+function renderTotal() {
+
+    let results = carritoJSON.reduce((acc, course) => acc + course.price, 0);
+
+    total.textContent = `$${results.toLocaleString('de-DE')}`;
+    subtotal.textContent = `$${results.toLocaleString('de-DE')}`;
+    totalInput.setAttribute("value", `Pagar $${results.toLocaleString('de-DE')}`);
+
+}
+
+renderTotal();
 
 
 
@@ -23,7 +90,6 @@ const actualizarContadorCarrito = function () {
     navCartCount.setAttribute("data-cart-count", cantidad);
 
     let total = carrito.reduce((acc, course) => acc + course.price, 0);
-    console.log(total);
     navCartTotal.textContent = `$${total.toLocaleString('de-DE')}`;
 
 }
