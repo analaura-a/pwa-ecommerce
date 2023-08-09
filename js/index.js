@@ -13,6 +13,7 @@ const navCartCount = document.getElementById("cart-count");
 const navCartTotal = document.getElementById("cart-total");
 
 
+
 /* FETCH */
 async function fetchCourses() {
     try {
