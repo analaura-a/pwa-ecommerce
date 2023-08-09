@@ -25,7 +25,8 @@
             "UI",
             "Figma"
         ],
-        "trending": "true"
+        "trending": "true",
+        "purchased": "false"
     },
     {
         "name": "Cómo organizar tu CSS con la metodología BEM",
@@ -53,7 +54,8 @@
             "CSS",
             "Metodología"
         ],
-        "trending": "true"
+        "trending": "true",
+        "purchased": "false"
     },
     {
         "name": "Cómo diseñar interfaces web responsive haciendo uso de grillas",
@@ -81,7 +83,8 @@
             "UI",
             "Figma"
         ],
-        "trending": "true"
+        "trending": "true",
+        "purchased": "false"
     },
     {
         "name": "Cómo agregar animaciones a tus webs con GSAP",
@@ -110,7 +113,8 @@
             "Animaciones",
             "JavaScript"
         ],
-        "trending": "true"
+        "trending": "true",
+        "purchased": "false"
     },
     {
         "name": "Diseñar experiencias digitales siguiendo pautas de accesibilidad",
@@ -137,7 +141,8 @@
             "UX/UI",
             "Accesibilidad"
         ],
-        "trending": "true"
+        "trending": "true",
+        "purchased": "false"
     },
     {
         "name": "Agregá animaciones 3D a tus webs con Three.js",
@@ -166,7 +171,8 @@
             "Animaciones",
             "JavaScript"
         ],
-        "trending": "true"
+        "trending": "true",
+        "purchased": "false"
     },
     {
         "name": "Creá Web APIs RESTful con ASP.NET",
@@ -195,7 +201,8 @@
             "APIs RESTful",
             "ASP.NET"
         ],
-        "trending": "false"
+        "trending": "false",
+        "purchased": "false"
     },
     {
         "name": "Cómo crear modelos de Machine Learning robustos y consistentes",
@@ -224,7 +231,8 @@
             "Python",
             "Machine Learning"
         ],
-        "trending": "false"
+        "trending": "false",
+        "purchased": "false"
     },
     {
         "name": "Cómo validar ideas en 5 días con Design Sprints",
@@ -251,7 +259,8 @@
             "UX/UI",
             "Metodología"
         ],
-        "trending": "false"
+        "trending": "false",
+        "purchased": "false"
     },
     {
         "name": "Cómo crear aplicaciones utilizando el modelo MVC con PHP",
@@ -279,7 +288,8 @@
             "PHP",
             "MVC"
         ],
-        "trending": "false"
+        "trending": "false",
+        "purchased": "false"
     },
     {
         "name": "UX Research: llevá adelante investigaciones cuantitativas con encuestas",
@@ -306,7 +316,8 @@
             "UX/UI",
             "UX Research"
         ],
-        "trending": "false"
+        "trending": "false",
+        "purchased": "false"
     },
     {
         "name": "Cómo realizar API Testing con Postman",
@@ -334,7 +345,8 @@
             "Postman",
             "APIs"
         ],
-        "trending": "false"
+        "trending": "false",
+        "purchased": "false"
     },
     {
         "name": "Cómo extraer datos de la web utilizando Python",
@@ -362,6 +374,7 @@
             "Python",
             "Web Scraping"
         ],
-        "trending": "false"
+        "trending": "false",
+        "purchased": "false"
     }
 ]

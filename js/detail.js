@@ -61,6 +61,7 @@ function createDatabase() {
         const objectStoreList = db.createObjectStore('courses', { keyPath: 'id', autoIncrement: true });
         objectStoreList.createIndex('category', 'category', { unique: false });
         objectStoreList.createIndex('trending', 'trending', { unique: false });
+        objectStoreList.createIndex('purchased', 'purchased', { unique: false });
 
     };
 

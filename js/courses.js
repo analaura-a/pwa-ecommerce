@@ -63,6 +63,7 @@ function createDatabase() {
         const objectStoreList = db.createObjectStore('courses', { keyPath: 'id', autoIncrement: true });
         objectStoreList.createIndex('category', 'category', { unique: false });
         objectStoreList.createIndex('trending', 'trending', { unique: false });
+        objectStoreList.createIndex('purchased', 'purchased', { unique: false });
 
     };
 
@@ -129,7 +130,8 @@ function JSONtoDatabase(data) {
             "level": course.level,
             "requirements": course.requirements,
             "subjects": course.subjects,
-            "trending": course.trending
+            "trending": course.trending,
+            "purchased": course.purchased
         }
 
         let request = objectStore.add(courseJSON);

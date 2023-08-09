@@ -5,6 +5,7 @@ let coursesContainer = document.getElementById("courses-container");
 let total = document.getElementById("totalCheckout");
 let subtotal = document.getElementById("subtotal");
 let totalInput = document.getElementById("total-compra");
+let formCheckout = document.getElementById("form-checkout");
 
 
 
@@ -19,6 +20,49 @@ if (carritoJSON) {
 } else {
     carritoJSON = [];
 }
+
+
+
+/* Base de datos */
+let db;
+function createDatabase() {
+
+    const DBOpenRequest = indexedDB.open('conceptoApp', 1);
+
+    // Error al conectar con la base de datos
+    DBOpenRequest.onerror = function (event) {
+
+        console.log('Algo salió mal en la conexión con la base de datos', event);
+
+    };
+
+    // Creación o actualización de la base de datos
+    DBOpenRequest.onupgradeneeded = function (event) {
+
+        db = event.target.result;
+
+        // ObjectStore de los cursos
+        const objectStoreList = db.createObjectStore('courses', { keyPath: 'id', autoIncrement: true });
+        objectStoreList.createIndex('category', 'category', { unique: false });
+        objectStoreList.createIndex('trending', 'trending', { unique: false });
+        objectStoreList.createIndex('purchased', 'purchased', { unique: false });
+
+    };
+
+    // Conexión exitosa con la base de datos
+    DBOpenRequest.onsuccess = function (event) {
+
+        console.log('Conexión exitosa con la base de datos');
+
+        db = event.target.result;
+
+
+
+    }
+
+};
+
+createDatabase();
 
 
 
@@ -94,6 +138,76 @@ const actualizarContadorCarrito = function () {
 
 }
 actualizarContadorCarrito();
+
+
+
+/* Función para vaciar el carrito */
+function emptyCart() {
+
+    carrito = [];
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+
+}
+
+
+
+/* Evento al enviar el form */
+formCheckout.addEventListener("submit", (e) => {
+
+    e.preventDefault();
+
+    console.log("Enviado");
+
+    //Iniciamos la transacción
+    const transaction = db.transaction(['courses'], 'readwrite');
+    let objectStore = transaction.objectStore('courses');
+
+    //Por cada uno de los cursos en el carrito...
+    carritoJSON.forEach((course) => {
+
+        let getRequest = objectStore.get(course.id);
+
+        getRequest.onsuccess = function (event) {
+
+            let course = event.target.result;
+
+            //Actualizamos su estado a "comprado"
+            course.purchased = "true";
+
+            let updateRequest = objectStore.put(course);
+
+            updateRequest.onsuccess = function () {
+                //Vaciamos el carrito
+                emptyCart();
+            }
+
+            updateRequest.onerror = function () {
+                //No vaciamos el carrito
+            }
+
+        }
+
+        // Transacción completada
+        transaction.oncomplete = () => {
+
+            //Redirigimos a la página de confirmación
+            localStorage.setItem("state", "success");
+            location.href = "state.html";
+
+        };
+
+        // Transacción con error
+        transaction.onerror = () => {
+
+            //Redirigimos a la página de confirmación
+            localStorage.setItem("state", "error");
+            location.href = "state.html";
+
+        };
+
+    })
+
+})
 
 
 
