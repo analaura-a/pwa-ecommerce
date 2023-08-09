@@ -19,6 +19,7 @@ let mainCTAText = document.getElementById("main-cta-text");
 let navCartCount = document.getElementById("cart-count");
 let navCartTotal = document.getElementById("cart-total");
 let notification = document.getElementById("notification");
+let notificationMessage = document.getElementById("notification-message");
 
 
 
@@ -127,21 +128,9 @@ function renderCourseInfo() {
 
     }
 
-    request.onerror = function (event) {
-        console.log('Ocurrió un error intentando obtener los datos de este curso', event);
+    request.onerror = function () {
+        notify("Ocurrió un error al intentar obtener la información de este curso. Inténtelo de nuevo más tarde.");
     }
-
-    // Transacción completada
-    // transaction.oncomplete = () => {
-    //     console.log('Transaction [renderTasklist] completada con éxito');
-    // };
-
-    // Transacción con error
-    // transaction.onerror = (e) => {
-    //     console.log('Ocurrió un problema al realizar la transaction [renderTasklist]', e);
-
-    //     mainTitle.textContent = 'Ocurrió un problema al intentar cargar esta lista...';
-    // };
 
 }
 
@@ -176,20 +165,17 @@ function renderCourseDetails() {
     }
 
     request.onerror = function (event) {
-        console.log('Ocurrió un error intentando obtener los datos de este curso', event);
+
+        notify("Ocurrió un error al intentar obtener la información de este curso. Inténtelo de nuevo más tarde.");
+
+        price.textContent = `$0`;
+        rating.textContent = `0 puntuación promedio.`;
+        students.textContent = `0 personas lo tomaron.`;
+        duration.textContent = `0 horas de video bajo demanda.`;
+        level.textContent = "inicial";
+        requirements.textContent = "No se pudieron encontrar pre-requisitos.";
+        subjects.innerHTML = "";
     }
-
-    // Transacción completada
-    // transaction.oncomplete = () => {
-    //     console.log('Transaction [renderTasklist] completada con éxito');
-    // };
-
-    // Transacción con error
-    // transaction.onerror = (e) => {
-    //     console.log('Ocurrió un problema al realizar la transaction [renderTasklist]', e);
-
-    //     mainTitle.textContent = 'Ocurrió un problema al intentar cargar esta lista...';
-    // };
 
 }
 
@@ -207,7 +193,6 @@ mainCTA.addEventListener("click", () => {
     //Iniciamos la transacción para ver si ya fue comprado
     const transaction = db.transaction(['courses'], 'readonly');
     let objectStore = transaction.objectStore('courses');
-    let purchasedIndex = objectStore.index("purchased");
 
     let request = objectStore.get(courseIndex);
 
@@ -244,15 +229,15 @@ mainCTA.addEventListener("click", () => {
 
     }
 
-
-
-
+    request.onerror = function () {
+        notify("Ocurrió un error al intentar obtener la información de este curso. Inténtelo de nuevo más tarde.");
+    }
 
 })
 
 
 
-//Función para actualizar el texto del CTA
+//Función para actualizar el texto del CTA según su estado
 function renderMainCTA() {
 
     //Identificamos el estado del carrito
@@ -264,7 +249,6 @@ function renderMainCTA() {
     //Iniciamos la transacción para ver si ya fue comprado
     const transaction = db.transaction(['courses'], 'readonly');
     let objectStore = transaction.objectStore('courses');
-    let purchasedIndex = objectStore.index("purchased");
 
     let request = objectStore.get(courseIndex);
 
@@ -303,6 +287,10 @@ function renderMainCTA() {
         }
     }
 
+    request.onerror = function () {
+        mainCTAText.textContent = "No se puede agregar este curso al carrito";
+    }
+
 }
 
 
@@ -331,12 +319,12 @@ function addToCart() {
         actualizarContadorCarrito();
 
         //Notificamos al usuario
-        notify();
+        notify("¡Producto agregado al carrito!");
 
     }
 
-    request.onerror = function (event) {
-        console.log('Ocurrió un error intentando agregar este curso al carrito', event);
+    request.onerror = function () {
+        notify("Ocurrió un error intentando agregar este curso al carrito. Inténtelo de nuevo más tarde.");
     }
 }
 
@@ -364,7 +352,9 @@ const actualizarContadorCarrito = function () {
 
 
 /* Notificación */
-function notify() {
+function notify(message) {
+
+    notificationMessage.textContent = message;
 
     notification.classList.remove("none");
     setTimeout(() => {
@@ -380,8 +370,6 @@ function notify() {
         }, 200);
 
     }, 5000);
-
-    //Dependiendo si se agregó al carrito o no, cambia el mensaje y el SVG.
 
 }
 
