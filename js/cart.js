@@ -313,6 +313,8 @@ function emptyCart() {
 
     localStorage.clear();
 
+    localStorage.setItem('dbInitialized', true);
+
     //Actualizamos la interfaz
     renderCartPage();
 

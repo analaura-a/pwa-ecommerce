@@ -3,6 +3,7 @@ const cacheName = "v1";
 const cachedAssets = [
     "./",
     "./index.html",
+    "./css/styles.css",
     "./manifest.json",
 ];
 
