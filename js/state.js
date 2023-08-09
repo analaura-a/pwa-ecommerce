@@ -61,6 +61,7 @@ function renderMessage() {
         container.appendChild(p);
         container.appendChild(a);
 
+        localStorage.removeItem('state');
 
     } else if (state == "error") {
 
@@ -94,6 +95,8 @@ function renderMessage() {
         container.appendChild(h2);
         container.appendChild(p);
         container.appendChild(a);
+
+        localStorage.removeItem('state');
 
     }
 

@@ -497,6 +497,7 @@ const actualizarContadorCarrito = function () {
 actualizarContadorCarrito();
 
 
+
 /* Menú mobile */
 const nav = document.getElementById('primary-navigation');
 const navToggle = document.getElementById('nav-toggle');

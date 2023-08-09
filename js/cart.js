@@ -271,7 +271,17 @@ function renderCartTotal() {
 
 /* Función para actualizar el carrito en el JSON */
 function updateJSONCart() {
+
     carritoJSON = JSON.parse(localStorage.getItem('carrito'));
+
+    if (carritoJSON) {
+        carritoJSON.forEach(course => {
+            carrito.push(course);
+        })
+    } else {
+        carritoJSON = [];
+    }
+
 }
 
 
@@ -301,8 +311,7 @@ function deleteCourse(e) {
 /* Función para vaciar el carrito */
 function emptyCart() {
 
-    carrito = [];
-    localStorage.setItem("carrito", JSON.stringify(carrito));
+    localStorage.clear();
 
     //Actualizamos la interfaz
     renderCartPage();
