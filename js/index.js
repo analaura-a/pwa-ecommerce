@@ -22,6 +22,8 @@ async function fetchCourses() {
         return data;
     } catch (error) {
         console.log('Ocurrió un error al intentar obtener la información del JSON', error);
+        let empty = [];
+        return empty;
     }
 }
 
@@ -88,7 +90,12 @@ function createDatabase() {
                     // Renderizamos los contadores de los cursos
                     renderCounterCategories();
                 })
-                .catch((error) => console.log('Ocurrió un error intentando obtener el JSON de las listas', error));
+                .catch((error) => {
+                    console.log('Ocurrió un error intentando obtener el JSON de las listas', error);
+
+                    renderTrendingCourses();
+                    renderCounterCategories();
+                });
         };
 
         // Renderizamos los cursos populares
@@ -141,24 +148,21 @@ function JSONtoDatabase(data) {
         let request = objectStore.add(courseJSON);
 
         request.onsuccess = function () {
+
             console.log('Se agregaron con éxito los cursos en el JSON a la base de datos');
+
+            renderTrendingCourses();
+
+            renderCounterCategories();
+
         };
 
         request.onerror = function (event) {
             console.log('Ocurrió un error intentando agregar los cursos en el JSON a la base de datos', event);
+            localStorage.setItem('dbInitialized', false);
         };
 
     });
-
-    // Transacción completada
-    transaction.oncomplete = () => {
-        console.log('Transaction [JSONtoDatabase] completada con éxito');
-    };
-
-    // Transacción con error
-    transaction.onerror = (e) => {
-        console.log('Ocurrió un problema al realizar la transaction [JSONtoDatabase]', e);
-    };
 
 }
 
@@ -181,23 +185,50 @@ function renderTrendingCourses() {
         array.forEach((course) => {
 
             //Creamos una card por cada curso
-            let divCourseCard = document.createElement("div");
+            let divCourseCard = document.createElement("li");
             divCourseCard.classList.add("course-card");
 
-            let cardContent = `
-                <a href="html/detail.html" class="anchor-detail">
-                    <div class="card-img">
-                        <img src="${course.cover}" alt="">
-                    </div>
-                    <div class="card-content">
-                        <p class="card-content-category mb-8">${course.category}</p>
-                        <h3 class="h3 mb-4">${course.name}</h3>
-                        <p class="card-content-paragraph mb-12">${course.short_description}</p>
-                        <p class="card-content-price">$${course.price.toLocaleString('de-DE')}</p>
-                    </div>
-                </a>`;
+            let a = document.createElement("a");
+            a.classList.add("anchor-detail");
+            a.setAttribute("href", "html/detail.html");
 
-            divCourseCard.innerHTML = cardContent;
+            let divImg = document.createElement("div");
+            divImg.classList.add("card-img");
+
+            let divContent = document.createElement("div");
+            divContent.classList.add("card-content");
+
+            let img = document.createElement("img");
+            img.setAttribute("src", `${course.cover}`);
+            img.setAttribute("alt", `${course.name}`);
+
+            let pCategory = document.createElement("p");
+            pCategory.classList.add("card-content-category", "mb-8");
+            pCategory.textContent = `${course.category}`;
+
+            let h3 = document.createElement("h3");
+            h3.classList.add("h3", "mb-4");
+            h3.textContent = `${course.name}`;
+
+            let pDescription = document.createElement("p");
+            pDescription.classList.add("card-content-paragraph", "mb-12");
+            pDescription.textContent = `${course.short_description}`;
+
+            let pPrice = document.createElement("p");
+            pPrice.classList.add("card-content-price");
+            pPrice.textContent = `$${course.price.toLocaleString('de-DE')}`;
+
+            divCourseCard.appendChild(a);
+
+            a.appendChild(divImg);
+            a.appendChild(divContent);
+
+            divImg.appendChild(img);
+
+            divContent.appendChild(pCategory);
+            divContent.appendChild(h3);
+            divContent.appendChild(pDescription);
+            divContent.appendChild(pPrice);
 
             //Las agregamos al contenedor
             containerTrending.appendChild(divCourseCard);
@@ -214,6 +245,12 @@ function renderTrendingCourses() {
 
     request.onerror = function (event) {
         console.log('Ocurrió un error intentando mostrar los cursos en tendencia', event);
+
+        let errorMessage = document.createElement("h2");
+        errorMessage.textContent = "No hay cursos disponibles en este momento."
+
+        containerTrending.appendChild(errorMessage);
+
     };
 
 };
@@ -309,7 +346,6 @@ const actualizarContadorCarrito = function () {
     navCartCount.setAttribute("data-cart-count", cantidad);
 
     let total = carrito.reduce((acc, course) => acc + course.price, 0);
-    console.log(total);
     navCartTotal.textContent = `$${total.toLocaleString('de-DE')}`;
 
 }

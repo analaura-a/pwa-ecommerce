@@ -22,6 +22,8 @@ async function fetchCourses() {
         return data;
     } catch (error) {
         console.log('Ocurrió un error al intentar obtener la información del JSON', error);
+        let empty = [];
+        return empty;
     }
 }
 
@@ -86,7 +88,11 @@ function createDatabase() {
                     renderCourses();
 
                 })
-                .catch((error) => console.log('Ocurrió un error intentando obtener el JSON de las listas', error));
+                .catch((error) => {
+                    console.log('Ocurrió un error intentando obtener el JSON de las listas', error);
+                    renderCourses();
+
+                });
         };
 
         // Renderizamos los cursos 
@@ -137,24 +143,15 @@ function JSONtoDatabase(data) {
         let request = objectStore.add(courseJSON);
 
         request.onsuccess = function () {
-            console.log('Se agregaron con éxito los cursos en el JSON a la base de datos');
+            renderCourses();
         };
 
         request.onerror = function (event) {
             console.log('Ocurrió un error intentando agregar los cursos en el JSON a la base de datos', event);
+            localStorage.setItem('dbInitialized', false);
         };
 
     });
-
-    // Transacción completada
-    transaction.oncomplete = () => {
-        console.log('Transaction [JSONtoDatabase] completada con éxito');
-    };
-
-    // Transacción con error
-    transaction.onerror = (e) => {
-        console.log('Ocurrió un problema al realizar la transaction [JSONtoDatabase]', e);
-    };
 
 }
 
@@ -264,6 +261,11 @@ function renderCourses() {
 
         request.onerror = function (event) {
             console.log('Ocurrió un error intentando mostrar los cursos', event);
+
+            let errorMessage = document.createElement("h2");
+            errorMessage.textContent = "No hay cursos disponibles en este momento."
+
+            containerCourses.appendChild(errorMessage);
         };
 
     } else {
@@ -337,6 +339,11 @@ function renderCourses() {
 
         request.onerror = function (event) {
             console.log('Ocurrió un error intentando mostrar los cursos', event);
+
+            let errorMessage = document.createElement("h2");
+            errorMessage.textContent = "No hay cursos disponibles en este momento."
+
+            containerCourses.appendChild(errorMessage);
         };
 
     }

@@ -8,7 +8,7 @@
     "scope": "./",
     "start_url": "./",
     "theme_color": "hsl(234, 86%, 68%)",
-    "background_color": "hsl(232, 100%, 62%)",
+    "background_color": "hsl(231.92deg 100% 62.16%)",
     "display": "standalone",
     "icons": [
         {
