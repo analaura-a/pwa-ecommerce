@@ -151,8 +151,6 @@ function JSONtoDatabase(data) {
 
             console.log('Se agregaron con éxito los cursos en el JSON a la base de datos');
 
-            renderTrendingCourses();
-
             renderCounterCategories();
 
         };
@@ -181,6 +179,8 @@ function renderTrendingCourses() {
     request.onsuccess = function (event) {
 
         let array = event.target.result;
+
+        containerTrending.innerHTML = "";
 
         array.forEach((course) => {
 
