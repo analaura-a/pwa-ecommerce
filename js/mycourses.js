@@ -184,7 +184,11 @@ function renderPurchasedCourses() {
     };
 
     request.onerror = function (event) {
-        console.log('Ocurrió un error intentando mostrar los cursos', event);
+        let errorMessage = document.createElement("h2");
+        errorMessage.textContent = "Ocurrió un error intentando mostrar los cursos comprados. Inténtelo de nuevo más tarde."
+        containerCourses.appendChild(errorMessage);
+
+        console.log(event);
     };
 
 }

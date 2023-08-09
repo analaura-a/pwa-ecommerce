@@ -21,7 +21,6 @@ if (carritoJSON) {
 
 /* Estado de la compra */
 let state = localStorage.getItem('state');
-console.log(state);
 
 
 
@@ -68,7 +67,7 @@ function renderMessage() {
         //Vaciamos el contenedor
         container.innerHTML = "";
 
-        //Vista de "éxito"
+        //Vista de "error"
         let divIcon = document.createElement("div");
         divIcon.classList.add("icon-container", "mb-32", "mt-64", "m-0-auto");
         divIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewbox="0 0 48 48" fill="none">

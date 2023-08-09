@@ -57,8 +57,6 @@ function createDatabase() {
 
         db = event.target.result;
 
-
-
     }
 
 };
@@ -156,8 +154,6 @@ function emptyCart() {
 formCheckout.addEventListener("submit", (e) => {
 
     e.preventDefault();
-
-    console.log("Enviado");
 
     //Iniciamos la transacción
     const transaction = db.transaction(['courses'], 'readwrite');
