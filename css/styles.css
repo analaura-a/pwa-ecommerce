@@ -1240,7 +1240,7 @@ footer {
     height: 200px;
     width: 100%;
 
-    background: linear-gradient(180deg, rgba(42, 43, 46, 0.51) 73.31%, rgba(60, 61, 66, 0.37) 100%), url("../assets/png/ejemplo-1.png");
+    background: linear-gradient(180deg, rgba(42, 43, 46, 0.51) 73.31%, rgba(60, 61, 66, 0.37) 100%);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

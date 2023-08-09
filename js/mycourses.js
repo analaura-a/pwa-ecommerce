@@ -54,21 +54,6 @@ function createDatabase() {
 
         db = event.target.result;
 
-        // Verificamos si la base de datos ya se ha inicializado
-        if (!dbInitialized) {
-
-            // Si aún no lo hizo, agregamos la información en el JSON a nuestra base de datos indexedDB
-            fetchCourses()
-                .then((data) => {
-                    JSONtoDatabase(data);
-
-                    // Renderizamos los cursos         
-                    renderCourses();
-
-                })
-                .catch((error) => console.log('Ocurrió un error intentando obtener el JSON de las listas', error));
-        };
-
         // Renderizamos los cursos comprados
         renderPurchasedCourses();
 
