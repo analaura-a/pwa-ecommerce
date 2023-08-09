@@ -490,10 +490,10 @@ const actualizarContadorCarrito = function () {
     navCartCount.setAttribute("data-cart-count", cantidad);
 
     let total = carrito.reduce((acc, course) => acc + course.price, 0);
-    console.log(total);
     navCartTotal.textContent = `$${total.toLocaleString('de-DE')}`;
 
 }
+
 actualizarContadorCarrito();
 
 

@@ -198,24 +198,55 @@ function renderCourseDetails() {
 /* Funcionalidad del CTA dependiendo del estado del curso */
 mainCTA.addEventListener("click", () => {
 
-    //Identificamos al carrito
+    //Identificamos el estado del carrito
     let carritoJSON = JSON.parse(localStorage.getItem('carrito'));
     if (!carritoJSON) {
         carritoJSON = [];
     }
 
-    //Si el curso ya está en el carrito...
-    if (carritoJSON.some(course => course.id == courseIndex)) {
+    //Iniciamos la transacción para ver si ya fue comprado
+    const transaction = db.transaction(['courses'], 'readonly');
+    let objectStore = transaction.objectStore('courses');
+    let purchasedIndex = objectStore.index("purchased");
 
-        console.log("Ya estoy en el carrito");
-        location.href = "cart.html";
+    let request = objectStore.get(courseIndex);
 
-    } else {
+    request.onsuccess = function (event) {
 
-        //Si el curso todavía no está en el carrito...
-        console.log("No estoy en el carrito, voy a agregarme");
-        addToCart();
+        let selectedCourse = event.target.result;
+
+        //Si aún no fue comprado...
+        if (selectedCourse.purchased == "false") {
+
+            console.log("Aún no fue comprado");
+
+            //Si el curso ya está en el carrito...
+            if (carritoJSON.some(course => course.id == courseIndex)) {
+
+                console.log("Ya estoy en el carrito");
+                location.href = "cart.html";
+
+            } else {
+
+                //Si el curso todavía no está en el carrito...
+                console.log("No estoy en el carrito, voy a agregarme");
+                addToCart();
+            }
+
+
+        } else {
+
+            console.log("Ya fue comprado");
+            //Si ya fue comprado...
+            location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley";
+
+        }
+
     }
+
+
+
+
 
 })
 
@@ -224,23 +255,52 @@ mainCTA.addEventListener("click", () => {
 //Función para actualizar el texto del CTA
 function renderMainCTA() {
 
+    //Identificamos el estado del carrito
     let carritoJSON = JSON.parse(localStorage.getItem('carrito'));
     if (!carritoJSON) {
         carritoJSON = [];
     }
 
-    //Si el curso ya está en el carrito...
-    if (carritoJSON.some(course => course.id == courseIndex)) {
+    //Iniciamos la transacción para ver si ya fue comprado
+    const transaction = db.transaction(['courses'], 'readonly');
+    let objectStore = transaction.objectStore('courses');
+    let purchasedIndex = objectStore.index("purchased");
 
-        console.log("Este curso ya está en el carrito");
-        mainCTAText.textContent = "Ir al carrito";
+    let request = objectStore.get(courseIndex);
 
-    } else {
+    request.onsuccess = function (event) {
 
-        //Si el curso todavía está en el carrito...
-        console.log("No estoy en el carrito aún");
-        mainCTAText.textContent = "Agregar al carrito";
+        let selectedCourse = event.target.result;
 
+        //Si aún no fue comprado...
+        if (selectedCourse.purchased == "false") {
+
+            console.log("Aún no fue comprado");
+
+            //Si el curso ya está en el carrito...
+            if (carritoJSON.some(course => course.id == courseIndex)) {
+
+                console.log("Este curso ya está en el carrito");
+                mainCTAText.textContent = "Ir al carrito";
+
+            } else {
+
+                //Si el curso todavía está en el carrito...
+                console.log("No estoy en el carrito aún");
+                mainCTAText.textContent = "Agregar al carrito";
+
+            }
+
+        } else {
+
+            //Si ya fue comprado...
+            mainCTA.innerHTML = `
+            <p id="main-cta-text">Ir al curso</p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewbox="0 0 48 48" fill="none">
+            <path fill="#fff"d="M28.11 15.264a.9.9 0 1 0-1.273 1.272l6.557 6.558H12.9a.9.9 0 1 0 0 1.8h20.493l-6.556 6.556a.9.9 0 0 0 1.272 1.273l8.094-8.093a.9.9 0 0 0 0-1.273l-8.094-8.093Z" />
+            </svg>`;
+
+        }
     }
 
 }
@@ -297,7 +357,6 @@ const actualizarContadorCarrito = function () {
     navCartCount.setAttribute("data-cart-count", cantidad);
 
     let total = carrito.reduce((acc, course) => acc + course.price, 0);
-    console.log(total);
     navCartTotal.textContent = `$${total.toLocaleString('de-DE')}`;
 
 }
