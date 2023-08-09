@@ -3,6 +3,7 @@ let navCartCount = document.getElementById("cart-count");
 let navCartTotal = document.getElementById("cart-total");
 let container = document.getElementById("cart");
 let cartCounter = document.getElementById("cart-counter");
+let todosCategory = document.getElementById('explorar');
 
 
 
@@ -322,6 +323,11 @@ function actualizarContadorCarrito() {
     navCartTotal.textContent = `$${total.toLocaleString('de-DE')}`;
 
 }
+
+
+todosCategory.addEventListener("click", () => {
+    localStorage.setItem('chosenCategory', "Todos");
+});
 
 
 

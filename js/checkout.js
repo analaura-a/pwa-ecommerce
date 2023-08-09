@@ -6,6 +6,7 @@ let total = document.getElementById("totalCheckout");
 let subtotal = document.getElementById("subtotal");
 let totalInput = document.getElementById("total-compra");
 let formCheckout = document.getElementById("form-checkout");
+let todosCategory = document.getElementById('explorar');
 
 
 
@@ -208,6 +209,12 @@ formCheckout.addEventListener("submit", (e) => {
     })
 
 })
+
+
+
+todosCategory.addEventListener("click", () => {
+    localStorage.setItem('chosenCategory', "Todos");
+});
 
 
 

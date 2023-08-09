@@ -46,7 +46,7 @@ function renderMessage() {
         let p = document.createElement("p");
         p.classList.add("paragraph", "mb-32");
         p.innerHTML = `Revisá tu mail para ver el comprobante de compra y empezá ahora mismo a
-        aprender en la sección <a href="mycourses.html" class="bold">Mis cursos</a>.`;
+        aprender en la sección <a href="mycourses.html" class="bold primary-color-text">Mis cursos</a>.`;
 
         let a = document.createElement("a");
         a.classList.add("main-cta", "m-0-auto", "mb-100");
