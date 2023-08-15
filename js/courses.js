@@ -17,7 +17,7 @@ let filterCounter = document.getElementById("filter-counter");
 /* FETCH */
 async function fetchCourses() {
     try {
-        let response = await fetch("../json/courses.json");
+        let response = await fetch("json/courses.json");
         let data = await response.json();
         return data;
     } catch (error) {
@@ -402,7 +402,7 @@ filters.forEach(boton => {
         e.currentTarget.classList.add("filter-active");
 
         //Aparición del banner flotante
-        bannerFlotante();
+        // bannerFlotante();
 
         //Actualización del contador de resultados
         counterResults();
