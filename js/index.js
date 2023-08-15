@@ -17,7 +17,7 @@ const navCartTotal = document.getElementById("cart-total");
 /* FETCH */
 async function fetchCourses() {
     try {
-        let response = await fetch("json/courses.json");
+        let response = await fetch("pwa-ecommerce/json/courses.json");
         let data = await response.json();
         return data;
     } catch (error) {
