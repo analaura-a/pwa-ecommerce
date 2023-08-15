@@ -293,7 +293,7 @@ function renderCourses() {
                 divContent.classList.add("card-content");
 
                 let img = document.createElement("img");
-                img.setAttribute("src", `${course.cover}`);
+                img.setAttribute("src", `.${course.cover}`);
                 img.setAttribute("alt", `${course.name}`);
 
                 let pCategory = document.createElement("p");
