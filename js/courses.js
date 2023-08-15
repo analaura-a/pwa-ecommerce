@@ -17,7 +17,7 @@ let filterCounter = document.getElementById("filter-counter");
 /* FETCH */
 async function fetchCourses() {
     try {
-        let response = await fetch("/json/courses.json");
+        let response = await fetch("./json/courses.json");
         let data = await response.json();
         return data;
     } catch (error) {
