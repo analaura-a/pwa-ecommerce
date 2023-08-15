@@ -189,7 +189,7 @@ function renderCart() {
 
         let img = document.createElement("img");
         img.classList.add("cart-card-img");
-        img.setAttribute("src", `${course.cover}`);
+        img.setAttribute("src", `.${course.cover}`);
         img.setAttribute("alt", `${course.name}`);
 
         let cardInfo = document.createElement("div");
