@@ -101,7 +101,7 @@ function renderCourseInfo() {
         console.log(selectedCourse);
 
         //Mostramos la información en la interfaz
-        cover.style.background = `linear-gradient(180deg, rgba(42, 43, 46, 0.51) 73.31%, rgba(60, 61, 66, 0.37) 100%), url(${selectedCourse.cover})`;
+        cover.style.background = `linear-gradient(180deg, rgba(42, 43, 46, 0.51) 73.31%, rgba(60, 61, 66, 0.37) 100%), url(.${selectedCourse.cover})`;
         cover.style.backgroundRepeat = "no-repeat";
         cover.style.backgroundPosition = "center";
         cover.style.backgroundSize = "cover";

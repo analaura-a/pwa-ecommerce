@@ -2,7 +2,7 @@
     {
         "name": "Design systems desde 0 en Figma",
         "category": "UX/UI",
-        "cover": "../assets/png/course-design-systems-figma.png",
+        "cover": "./assets/png/course-design-systems-figma.png",
         "price": 8500,
         "short_description": "Aprendé desde 0 cómo armar un sistema de diseño en Figma, desde por qué necesitarías uno hasta las mejores prácticas utilizadas por equipos de diseño de todo el mundo en la actualidad.",
         "teacher_name": "Julia Lopez",
@@ -31,7 +31,7 @@
     {
         "name": "Cómo organizar tu CSS con la metodología BEM",
         "category": "Frontend",
-        "cover": "../assets/png/course-css-bem.png",
+        "cover": "./assets/png/course-css-bem.png",
         "price": 4500,
         "short_description": "Aprendé a optimizar tus proyectos frontend con un sistema robusto, escalable, mantenible en el tiempo y con una serie de reglas fáciles de seguir: BEM (Block Element Modifier).",
         "teacher_name": "Ricardo García",
@@ -60,7 +60,7 @@
     {
         "name": "Cómo diseñar interfaces web responsive haciendo uso de grillas",
         "category": "UX/UI",
-        "cover": "../assets/png/course-responsive-grid.png",
+        "cover": "./assets/png/course-responsive-grid.png",
         "price": 4300,
         "short_description": "Aprendé todo sobre el uso de las grillas en el diseño de interfaces web y cómo volver tus diseños responsive.",
         "teacher_name": "Julia Lopez",
@@ -89,7 +89,7 @@
     {
         "name": "Cómo agregar animaciones a tus webs con GSAP",
         "category": "Frontend",
-        "cover": "../assets/png/course-gsap.png",
+        "cover": "./assets/png/course-gsap.png",
         "price": 4500,
         "short_description": "Llevá tu desarrollo front-end al siguiente nivel añadiendo sofisticadas animaciones interactivas a tus proyectos.",
         "teacher_name": "Ricardo García",
@@ -119,7 +119,7 @@
     {
         "name": "Diseñar experiencias digitales siguiendo pautas de accesibilidad",
         "category": "UX/UI",
-        "cover": "../assets/png/course-accesibility.png",
+        "cover": "./assets/png/course-accesibility.png",
         "price": 4700,
         "short_description": "Aprendé a aplicar los principios de la accesibilidad web (Web Content Accessibility Guidelines) en tus diseños y la importancia de considerar la diversidad de necesidades que tus creaciones cubren.",
         "teacher_name": "Eugenia Casabona",
@@ -147,7 +147,7 @@
     {
         "name": "Agregá animaciones 3D a tus webs con Three.js",
         "category": "Frontend",
-        "cover": "../assets/png/course-three.png",
+        "cover": "./assets/png/course-three.png",
         "price": 10200,
         "short_description": "Aprendé a crear sitios web 3D envolventes y creativos con la librería Three.js.",
         "teacher_name": "Ricardo García",
@@ -177,7 +177,7 @@
     {
         "name": "Creá Web APIs RESTful con ASP.NET",
         "category": "Backend",
-        "cover": "../assets/png/course-net.png",
+        "cover": "./assets/png/course-net.png",
         "price": 9500,
         "short_description": "¡Aprendé a construir y publicar cualquier Web API que te propongas!",
         "teacher_name": "Lara Becker",
@@ -207,7 +207,7 @@
     {
         "name": "Cómo crear modelos de Machine Learning robustos y consistentes",
         "category": "Data",
-        "cover": "../assets/png/course-machine-learning.png",
+        "cover": "./assets/png/course-machine-learning.png",
         "price": 13500,
         "short_description": "Aprende a crear algoritmos de Machine Learning en Python de la mano de expertos en Data Science.",
         "teacher_name": "Sebastian Tunnell",
@@ -237,7 +237,7 @@
     {
         "name": "Cómo validar ideas en 5 días con Design Sprints",
         "category": "UX/UI",
-        "cover": "../assets/png/course-design-sprints.png",
+        "cover": "./assets/png/course-design-sprints.png",
         "price": 5400,
         "short_description": "Aprendé a prototipar, testear y validar ideas para el desarrollo de negocios en 5 días con ayuda de la metodología Design Sprint de Google.",
         "teacher_name": "Alan Lerner",
@@ -265,7 +265,7 @@
     {
         "name": "Cómo crear aplicaciones utilizando el modelo MVC con PHP",
         "category": "Backend",
-        "cover": "../assets/png/course-mvc.png",
+        "cover": "./assets/png/course-mvc.png",
         "price": 9500,
         "short_description": "Incorporá el paradigma modelo-vista-controlador (MVC) a tus proyectos PHP de manera profesional.",
         "teacher_name": "Lara Becker",
@@ -294,7 +294,7 @@
     {
         "name": "UX Research: llevá adelante investigaciones cuantitativas con encuestas",
         "category": "UX/UI",
-        "cover": "../assets/png/course-quantitative.png",
+        "cover": "./assets/png/course-quantitative.png",
         "price": 8300,
         "short_description": "Aprendé diversos métodos y técnicas de investigación cuantitativa para aplicar al diseño de tus productos y servicios digitales.",
         "teacher_name": "Eugenia Casabona",
@@ -322,7 +322,7 @@
     {
         "name": "Cómo realizar API Testing con Postman",
         "category": "Backend",
-        "cover": "../assets/png/course-postman.png",
+        "cover": "./assets/png/course-postman.png",
         "price": 7800,
         "short_description": "Aprendé a automatizar con Postman y llevá adelante API/Web Services testing con integración CI/CD.",
         "teacher_name": "Lara Becker",
@@ -351,7 +351,7 @@
     {
         "name": "Cómo extraer datos de la web utilizando Python",
         "category": "Data",
-        "cover": "../assets/png/course-data-python.png",
+        "cover": "./assets/png/course-data-python.png",
         "price": 13500,
         "short_description": "Aprendé los fundamentos del Web Scraping para extraer y analizar datos de la web con Python.",
         "teacher_name": "Sebastian Tunnell",
